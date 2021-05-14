@@ -16,6 +16,7 @@ def parse_args():
     parser.add_argument("-c","--check",action="store_true",help="Check wich files are not handled by the dotfiles")
     parser.add_argument("-l","--list",action="store_true",help="List synchronized files")
     parser.add_argument("-r","--repo",metavar="FOLDER",default=os.path.dirname(os.path.realpath(__file__)),help="Folders where are the configuration files")
+    parser.add_argument("--force",action="store_true",help="Do not ask for modification")
     return parser.parse_args()
 
 def main():
@@ -30,7 +31,7 @@ def main():
         for f in args.add:
             dst = os.path.join(home,prefix+f)
             if os.path.exists(dst):
-                ans = raw_input("File %s exists, overwrite (y/N) ? " % dst)
+                ans = "y" if args.force else input("File %s exists, overwrite (y/N) ? " % dst)
                 if ans == "y":
                     if os.path.isdir(dst) and not os.path.islink(dst):
                         shutil.rmtree(dst)
