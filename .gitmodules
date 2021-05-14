@@ -1,0 +1,27 @@
+[submodule "vim/bundle/fzf.vim.git"]
+	path = vim/bundle/fzf.vim.git
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "vim/bundle/lightline.vim"]
+	path = vim/bundle/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/vim-gitbranch"]
+	path = vim/bundle/vim-gitbranch
+	url = https://github.com/itchyny/vim-gitbranch.git
+[submodule "vim/bundle/rainbow"]
+	path = vim/bundle/rainbow
+	url = https://github.com/luochen1990/rainbow
+[submodule "vim/bundle/vim-snippets"]
+	path = vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "vim/bundle/ack.vim"]
+	path = vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/CCTree"]
+	path = vim/bundle/CCTree
+	url = https://github.com/hari-rangarajan/CCTree
