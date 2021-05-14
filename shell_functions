@@ -1,0 +1,292 @@
+#!/bin/bash
+
+# File backup function
+bck() { cp "$1" "$1.back_`date +%Y%m%d_%H%M%S`" ; }
+
+fzf_install() {
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install
+}	
+
+gccvuln() {
+	src=${1%*.c}.c
+	exe=${1%*.c}
+	echo gcc $src -w -O0 -ggdb -std=c99 -D_FORTIFY_SOURCE=0 -fno-pie -Wno-format -Wno-format-security -fno-stack-protector -z norelro -z execstack -o $exe
+	gcc $src -w -O0 -ggdb -std=c99 -D_FORTIFY_SOURCE=0 -fno-pie -Wno-format -Wno-format-security -fno-stack-protector -z norelro -z execstack -o $exe
+}
+
+allow_core() {
+	sudo sysctl -w kernel.core_pattern=core
+	ulimit -c 100000
+}
+
+encrypt() {
+	passwd=$(pwqgen)
+	7z a -p$passwd $1.zip $1
+	echo "password = $passwd"
+}
+
+disable_stack_protection() {
+	sudo sysctl -w kernel.randomize_va_space=0
+}
+
+shellstorm_exec() {
+	host=""
+	port=10220
+	u=$1
+	cmd=$2
+	ssh -p $port $u@intruded.net "$cmd"
+}
+
+highlight() {
+	grep --color -E "$1|$"
+}
+
+pathbin() {
+	[ -z $1 ] && echo "Usage: $0 file [new_name]" && return 1
+	p=$(readlink -f $1)
+	if [ -n $2 ]; then
+		n=$2
+	else
+		n=${p##*/}
+	fi
+	ln -s $p $HOME/bin/link/$n
+}
+
+auth() {
+	chauthisson -q $* | xsel
+}
+
+gps() {
+	ps auxf | grep $*
+}
+
+gdpkg() {
+	dpkg -l | grep $*
+}
+
+alert() {
+	echo -e '\a'
+}
+
+own() {
+	sudo chown $USER:$USER $*
+}
+
+cpath() {
+	if [ $# -eq 0 ]; then
+		t="."
+	else
+		t=$1
+	fi
+	# Give absolut path of $1 and send it to copy buffer, usefull to copy/paste
+	p=$(realpath $t)
+	echo -n $p | xsel
+	echo $p
+}
+
+syn() {
+	if [ $# -eq 1 ]; then
+		sudo hping3 -S -p 80 $1
+	else
+		sudo hping3 -S -p $2 $1
+	fi
+}
+
+# exchange $1 and $2 name
+exchange() {
+	if [ ! -f $1.tmp ]; then
+		mv $1 $1.tmp
+		mv $2 $1
+		mv $1.tmp $2
+	else
+		echo "File $1.tmp exists, cannot proceed"
+	fi
+}
+
+own() {
+	# chown current_user:current_user
+	user=$(id -un)
+	group=$(id -gn)
+	sudo chown $user:$group $*
+}
+
+gkill() {
+	if [ x"$1" = x"-s" ]; then
+		ps ax | grep $2 | grep -v grep | awk -F' ' '{print $1;}' | xargs sudo kill $3
+	else
+		ps ax | grep $1 | grep -v grep | awk -F' ' '{print $1;}' | xargs kill $2
+	fi
+}
+
+graphsize() {
+	if [ $# -eq 0 ]; then
+		dir="."
+		size="10"
+	elif [ $# -eq 1 ]; then
+		dir=$1
+		size="10"
+	else
+		dir=$1
+		size=$2
+	fi
+	sudo du -bs $dir/* | sort -n | awk -F'\t' '{print $2":"$1}' | spark -H -s $size
+}
+
+diffzip() {
+	diff <(unzip -l $1|tr -s ' '|cut -d' ' -f5|sort) <(unzip -l $2|tr -s ' '|cut -d' ' -f5|sort)
+}
+
+# Generic decompression
+un() {
+	local ukn=0
+    case "$1" in
+        *.tar.gz|*.tar.bz2|*.tar.z)
+            dir_name=${1%*.tar.*} ;;
+        *)
+            dir_name=${1%*.*} ;;
+    esac
+    mkdir $dir_name
+    mv $1 $dir_name
+    cd $dir_name
+    case "$1" in
+        *.tgz|*.tar.gz) tar xzf "$1" ;;
+        *.tar.bz2|*.tz2|*.tbz2) tar xjf "$1" ;;
+        *.tar.xz|*.txz) tar xJf "$1" ;;
+        *.tar) tar xf "$1" ;;
+        *.gz) gunzip "$1" ;;
+        *.bz2) bunzip2 "$1" ;;
+        *.z|*.Z) uncompress "$1" ;;
+        *.zip|*.ZIP) unzip "$1" ;;
+        *.jar|*.JAR) unzip "$1" ;;
+		*.odt|*.ODT) unzip "$1" ;;
+		*.rar|*.RAR) unrar x "$1";;
+        *) echo "unknow format : $1"; mv $1 ..; ukn=1;;
+    esac
+    cd ..
+	[ $ukn -eq 1 ] && rmdir $dir_name
+}
+
+unl() {
+    case "$1" in
+        *.tgz|*.tar.gz) tar tzf "$1" ;;
+        *.tar.bz2|*.tz2|*.tbz2) tar tjf "$1" ;;
+        *.tar.xz) tar tJf "$1" ;;
+        *.tar) tar tf "$1" ;;
+        *.zip|*.ZIP) unzip -l "$1" ;;
+        *.jar|*.JAR) unzip -l "$1" ;;
+		*.odt|*.ODT) unzip -l "$1" ;;
+		*.rar|*.RAR) unrar l "$1";;
+        *) echo "unknow format : $1" ;;
+    esac
+}
+
+otcp() {
+    echo "Omitting 127.0.0.1"
+    sudo netstat -ltpn | tail -n +3 | grep -v 127.0.0.1
+}
+
+oudp() {
+    echo "Omitting 127.0.0.1"
+    sudo netstat -lupn | tail -n +3 | grep -v 127.0.0.1
+}
+
+internet() {
+    local ans
+
+    ping -c 1 8.8.8.8 2>&1 >/dev/null&& echo "Ping OK" || echo "Ping KO"
+
+    ans="$(dig +short www.google.fr | wc -l)"
+    [ $ans -ge "1" ] && echo "DNS OK" || echo "DNS KO"
+
+	google="$(dig @8.8.8.8 +short www.google.fr)"
+	ans="$(echo $google | wc -l)"
+    [ $ans -ge "1" ] && echo "Outside DNS OK" || echo "Outside DNS KO"
+
+    sudo hping3 -S -p 80 $google -c 1 > /dev/null 2>&1 && echo "HTTP OK" || echo "HTTP KO"
+}
+
+# Download a private torrent
+dltp() {
+	for i in $*; do
+		scp $i dl:/home/warez/watch/private
+		rm -f $i
+	done
+}
+
+# Download all torrents
+dlta() {
+	for i in ~/Downloads/*torrent; do
+		dispatch_torrent.py $i
+	done
+}
+
+# Wipe wipe directory inside ($1)
+wipe_directory() {
+	[ $# -ne 1 ] && echo "No directory" && return 1
+	[ -d "$1/wipe" ] && wipe -rfq $1/wipe/* || echo "$1/wipe is not a directory"
+}
+
+# Clean old kernels
+clean_kernel() {
+	dpkg --list | grep 'linux-image' | awk '{ print $2 }' | sort -V | sed -n '/'"$(uname -r | sed "s/\([0-9.-]*\)-\([^0-9]\+\)/\1/")"'/q;p' | xargs sudo apt-get -y purge
+	dpkg --list | grep 'linux-headers' | awk '{ print $2 }' | sort -V | sed -n '/'"$(uname -r | sed "s/\([0-9.-]*\)-\([^0-9]\+\)/\1/")"'/q;p' | xargs sudo apt-get -y purge
+}
+
+# Dsiplay weather
+wttr() {
+	curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Toulouse}"
+}
+
+# Easy way to mount iso
+miso() {
+	dev=$1
+	if [ $# -ge 2 ]; then
+		dest=$2
+	else
+		dest="/mnt/iso"
+	fi
+	sudo mount -t iso9660 $dev $dest
+}
+
+vn() {
+	file=$(echo $1 | cut -f1 -d":")
+	line=$(echo $1 | cut -f2 -d":")
+	vi $file +$line
+}
+
+# Raise urgent flag as soon as ssh status change
+check_tcp() {
+	if [ $# -eq 1 ]; then
+		port=22
+	else
+		port=$2
+	fi
+	pywatch TCPWatch --interval 1 -p $port -d $1 Printer --urgent
+}
+
+# Raise urgent flag as soon as ssh status change
+check_host() {
+	pywatch HostWatch --interval 1 -d $1 Printer --urgent
+}
+
+nocomment() {
+	grep -v '^$\|^\s*\#' $1
+}
+
+x509() {
+	file=$1
+	nb_param=$#
+	shift
+	[ $nb_param -eq 1 ] && PARAM="-text" || PARAM="$*"
+
+	# check certificate type
+	openssl x509 -in $file -inform PEM -noout 2>/dev/null
+	[ $? -eq 0 ] && type="PEM" || type="DER"
+
+	openssl x509 -in $file -inform $type -noout $PARAM
+}
+
+dke() {
+	sudo docker exec -it $1 /bin/bash
+}

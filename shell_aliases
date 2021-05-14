@@ -1,0 +1,182 @@
+#!/bin/bash
+
+# Security
+alias chown="chown --preserve-root"
+alias chmod="chmod --preserve-root"
+alias chgrp="chgrp --preserve-root"
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Win time
+alias hl='highlight'
+alias py='python3'
+alias mkdir='mkdir -p'
+alias svi="sudo vi"
+alias ipt="sudo /sbin/iptables"
+alias ipr="ip route show"
+alias ipa="ip --brief addr show"
+alias ipl="ip link show"
+alias ipg="ip route get"
+alias dns="dig +short"
+alias e="emacs"
+alias ux="chmod u+x"
+alias rel="source ~/.zshrc"
+alias m="man"
+alias aiz="apt-cache search . | fzf | cut -d' ' -f1 | xargs sudo apt-get install"
+alias lo="libreoffice"
+alias ts="tail -f /var/log/syslog"
+alias tf="tail -f"
+alias g="git"
+alias tref='trans :en :fr'
+alias trfe='trans :fr :en'
+alias gdb='gdb -q'
+alias ush='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias greip="grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
+alias ssns="ps -o pid,netns -ax|grep '^[0-9 ]\+$'|sort -k2|uniq -f1|awk '{print $1}'|while read a; do nsenter -n -t $a ss -lptn; done"
+alias ag="ag --path-to-ignore ~/.ignore_ag"
+
+## Change folder
+alias ..='cd ../..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+# Improve output
+
+## dmesg with readable time
+alias dmesg='dmesg -T'
+
+alias less='less -R'
+alias diff="colordiff"
+alias mountc="mount|column -t"
+alias diffw="git diff --word-diff --no-index"
+alias difft="diff --brief -r"
+alias ip='ip --color'
+alias ipb='ip --color --brief'
+alias tmux='tmux -2'
+
+kernel=$(uname)
+if [ $kernel = "Darwin" ]; then
+	SYSTEM_TYPE="OSX"
+else
+	SYSTEM_TYPE="Linux"
+fi
+# enable ls colors
+  if [[ "$DISABLE_LS_COLORS" != "true" ]]; then
+    if [[ "$SYSTEM_TYPE" == "NET_BSD" ]]; then
+      # On NetBSD, test if "gls" (GNU ls) is installed (this one supports colors);
+      # otherwise, leave ls as is, because NetBSD's ls doesn't support -G
+      gls --color -d . &>/dev/null 2>&1 && COLORFLAG="--color=tty"
+    elif [[ "$SYSTEM_TYPE" == "OPEN_BSD" ]]; then
+      # On OpenBSD, test if "colorls" is installed (this one supports colors);
+      # otherwise, leave ls as is, because OpenBSD's ls doesn't support -G
+      colorls -G -d . &>/dev/null 2>&1 && COLORFLAG="-G"
+    elif [[ "$SYSTEM_TYPE" == "OSX" ]]; then
+      # on OS X use "-G"
+      COLORFLAG="-G"
+	  FOLDER_FIRST=""
+    elif ls --color -d . &>/dev/null 2>&1; then
+      COLORFLAG="--color"
+	  FOLDER_FIRST="--group-directories-first"
+      if [[ "$SYSTEM_TYPE" == "LINUX" || "$SYSTEM_TYPE" == "CYGWIN" ]]; then
+        COLORFLAG="--color=auto"
+      fi
+    fi
+  fi
+
+## GRC
+if which grc >/dev/null 2>&1; then
+	alias colour="grc -es --colour=auto"
+	alias as="colour as"
+	alias configure="colour ./configure"
+	alias diff="colour diff"
+	alias dig="colour dig"
+	alias g++="colour g++"
+	alias gas="colour gas"
+	alias gcc="colour gcc"
+	alias head="colour head"
+	alias ifconfig="colour ifconfig"
+	alias ld="colour ld"
+	alias lsc="colour ls"
+	alias make="colour make"
+	alias mount="colour mount"
+	alias netstat="colour netstat"
+	alias ping="colour ping"
+	alias ps="colour ps"
+	alias tail="colour tail"
+	alias traceroute="colour traceroute"
+	alias syslog="sudo colour tail -f -n 100 /var/log/syslog"
+else
+	alias lsc="ls -F $COLORFLAG"
+fi
+
+alias grep="grep $COLORFLAG"
+alias egrep="egrep $COLORFLAG"
+alias fgrep="fgrep $COLORFLAG"
+
+## ls
+
+### list all files colorized in long format
+alias l="lsc -lhF $COLORFLAG"
+### list all files with directories
+alias ldir="lc -R"
+### Show hidden files
+alias l.="lsc -dlhF .* $COLORFLAG"
+alias ldot="l."
+### use colors
+alias ls="ls -F $COLORFLAG"
+### display only files & dir in a v-aling view
+alias l1="ls -1 $COLORFLAG"
+### displays all files and directories in detail
+alias la="lsc -laFh $COLORFLAG"
+### displays all files and directories in detail (without "." and without "..")
+alias lA="lsc -lAFh $COLORFLAG"
+alias lsa="la"
+### displays all files and directories in detail with newest-files at bottom
+alias lr="lsc -laFhtr $COLORFLAG"
+### show last 10 recently changed files
+alias lt="lsc -altr | grep -v '^d' | tail -n 10"
+### show files and directories (also in sub-dir) that was touched in the last hour
+alias lf="find ./* -ctime -1 | xargs ls -ltr $COLORFLAG"
+### displays files and directories in detail
+alias ll="lsc -lFh $FOLDER_FIRST $COLORFLAG"
+### shows the most recently modified files at the bottom of
+alias llr="lsc -lartFh $FOLDER_FIRST $COLORFLAG"
+### list only directories
+alias lsd="lsc -lFh $COLORFLAG | grep --color=never '^d'"
+### sort by file-size
+alias lS="ls -1FSshr $COLORFLAG"
+### displays files and directories
+alias dir="ls --format=vertical $COLORFLAG"
+### displays more information about files and directories
+alias vdir="ls --format=long $COLORFLAG"
+
+# super-grep ;)
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
+
+# speedtest: get a 100MB file via wget
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip"
+
+# System utilities
+## get top process eating memory
+alias psmem="ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6"
+alias psmem5="psmem | tail -5"
+alias psmem10="psmem | tail -10"
+
+## get top process eating cpu
+alias grep='grep --color=always'
+alias pscpu="ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 5"
+alias pscpu5="pscpu5 | tail -5"
+alias pscpu10="pscpu | tail -10"
+
+## shows the corresponding process to ...
+alias psx="ps auxwf | grep "
+
+## show the biggest files in a folder first
+alias du_overview='du -h | grep "^[0-9,]*[MG]" | sort -hr'
+
+# List of package
+alias get_packages='grep -v -E "^rc" | cut -d" " -f3 | paste -sd" "'

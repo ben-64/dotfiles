@@ -1,0 +1,9 @@
+*.pyc
+*.swp
+*.swo
+tags
+*.aux
+*.nav
+*.snm
+*.toc
+*.vrb

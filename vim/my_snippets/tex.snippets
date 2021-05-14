@@ -1,0 +1,35 @@
+# In order to reload snippets: :call UltiSnips#RefreshSnippets()
+snippet ep "emph"
+\emph{$0}
+endsnippet
+
+snippet tt "texttt"
+\texttt{$0}
+endsnippet
+
+snippet cco "ccode"
+\begin{ccode}{$1}
+$0
+\end{ccode}
+endsnippet
+
+snippet ext "extract"
+\begin{extract}{$1}{$2}
+$0
+\end{extract}
+endsnippet
+
+snippet vulnb "vulnbloc"
+\begin{VulnBloc}{vuln:$1}{$2}{$3}
+\Recocouverte{reco:$4}
+$0
+\end{VulnBloc}
+endsnippet
+
+snippet recob "recobloc"
+\begin{Reco}{reco:$1}{$2}
+\Priorite{court terme}
+\Responsable{}
+$0
+\end{Reco}
+endsnippet
