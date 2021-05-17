@@ -69,19 +69,29 @@ unsetopt rm_star_silent
 # Command correction
 #setopt correctall
 
-# Load different source files
-CONF="$HOME/.shell_aliases $HOME/.shell_functions $HOME/.shell_private $HOME/.shell_$HOST $HOME/.fzf.zsh /usr/share/autojump/autojump.sh"
-for conf in $(echo $CONF); do
-	if [ -e "$conf" ]; then
-		source $conf
-	fi
-done	
-
 # Environment variables
-PS1=$(echo -ne "%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%} : %{$fg[cyan]%}%*\${vcs_info_msg_0_}\n%{$fg[green]%}%(?..[%?])%{$fg[blue]%}%~%f%%%{$reset_color%} ")
+export PS1=$(echo -ne "%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%} : %{$fg[cyan]%}%*\${vcs_info_msg_0_}\n%{$fg[green]%}%(?..[%?])%{$fg[blue]%}%~%f%%%{$reset_color%} ")
 export EDITOR="vim"
 export PATH=$PATH:~/bin
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 export WORDCHARS="_-"
+
+# Load different source files
+CONF="$HOME/.shell_aliases $HOME/.shell_functions $HOME/.shell_private /usr/share/autojump/autojump.sh"
+for conf in $(echo $CONF); do
+	if [ -e "$conf" ]; then
+		source $conf
+	fi
+done
+
+# Load host specific files
+[ -e $HOME/.shell_$HOST ] && source $HOME/.shell_$HOST
+if [ -d ~/.shell_$HOST.d ]; then
+   for sh in ~/.shell_$HOST.d/*; do
+      if [ -f $sh ]; then
+         source $sh
+      fi
+   done
+fi
 
 umask 0022
