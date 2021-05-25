@@ -28,3 +28,9 @@
 [submodule "vim/bundle/vim-matchup"]
 	path = vim/bundle/vim-matchup
 	url = https://github.com/andymass/vim-matchup.git
+[submodule "vim/bundle/vim-mark"]
+	path = vim/bundle/vim-mark
+	url = https://github.com/inkarkat/vim-mark
+[submodule "vim/bundle/vim-ingo-library"]
+	path = vim/bundle/vim-ingo-library
+	url = https://github.com/inkarkat/vim-ingo-library
