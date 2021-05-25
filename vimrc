@@ -138,6 +138,9 @@ let g:ackprg = 'ag --vimgrep --follow'
 " Rainbow
 let g:rainbow_active = 1
 
+" Matchup
+let g:loaded_matchit = 1
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"

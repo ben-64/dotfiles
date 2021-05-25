@@ -25,3 +25,6 @@
 [submodule "vim/bundle/CCTree"]
 	path = vim/bundle/CCTree
 	url = https://github.com/hari-rangarajan/CCTree
+[submodule "vim/bundle/vim-matchup"]
+	path = vim/bundle/vim-matchup
+	url = https://github.com/andymass/vim-matchup.git
