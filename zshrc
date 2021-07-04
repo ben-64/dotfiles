@@ -77,7 +77,7 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 export WORDCHARS="_-"
 
 # Load different source files
-CONF="$HOME/.shell_aliases $HOME/.shell_functions $HOME/.shell_private /usr/share/autojump/autojump.sh"
+CONF="$HOME/.shell_aliases $HOME/.shell_functions $HOME/.shell_private /usr/share/autojump/autojump.sh $HOME/.fzf.zsh"
 for conf in $(echo $CONF); do
 	if [ -e "$conf" ]; then
 		source $conf
