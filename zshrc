@@ -25,15 +25,15 @@ fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
 
 ## Completion
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+#fpath=(~/.zsh/completion $fpath)
+#autoload -Uz compinit && compinit -i
 
 # Do not kill running jobs when exiting zsh
 setopt NO_HUP
 setopt NO_CHECK_JOBS  # Avoid warning
 
 # Report CPU usage for commands running longer than 5 seconds
-export REPORTTIME=5
+export REPORTTIME=30
 
 # Sexy Completion
 autoload -U compinit && compinit
@@ -77,7 +77,7 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 export WORDCHARS="_-"
 
 # Load different source files
-CONF="$HOME/.shell_aliases $HOME/.shell_functions $HOME/.shell_private /usr/share/autojump/autojump.sh $HOME/.fzf.zsh"
+CONF="$HOME/.shell_aliases $HOME/.shell_functions $HOME/.shell_private /usr/share/autojump/autojump.sh"
 for conf in $(echo $CONF); do
 	if [ -e "$conf" ]; then
 		source $conf
