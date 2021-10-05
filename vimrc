@@ -62,6 +62,7 @@ set hlsearch
 
 set ts=4
 set shiftwidth=4
+set expandtab
 
 filetype plugin indent on
 
@@ -83,6 +84,10 @@ map <Leader>a :AgC<CR>
 map <Leader>q :AgC <C-R><C-W><CR>
 map <Leader>t :Tags<CR>
 map <Leader>b :Buffers<CR>
+
+" I cannot use `map <Leader>m :Marks` because Marks is overrided by another
+" plugin
+map <Leader>m :call fzf#vim#marks()<CR>
 map <Leader>< :pop<CR>
 map <F4> :set number!<CR>
 nnoremap <Leader>> <C-]>

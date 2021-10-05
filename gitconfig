@@ -1,6 +1,7 @@
 [alias]
 	lg = log --color --graph --pretty=format:'%C(yellow)%h%Creset -%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	wd = diff --word-diff
+	polaire = pull
 [core]
 	excludesfile = ~/.gitignore
 [include]
@@ -9,5 +10,5 @@
 	ui = auto
 [push]
 	default = simple
-[init]
-	defaultBranch = master
+[pull]
+	rebase = true

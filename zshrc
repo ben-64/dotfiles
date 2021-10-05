@@ -25,15 +25,15 @@ fpath=(~/.zsh/functions $fpath)
 autoload -U ~/.zsh/functions/*(:t)
 
 ## Completion
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+#fpath=(~/.zsh/completion $fpath)
+#autoload -Uz compinit && compinit -i
 
 # Do not kill running jobs when exiting zsh
 setopt NO_HUP
 setopt NO_CHECK_JOBS  # Avoid warning
 
 # Report CPU usage for commands running longer than 5 seconds
-export REPORTTIME=5
+export REPORTTIME=30
 
 # Sexy Completion
 autoload -U compinit && compinit
@@ -76,22 +76,24 @@ export PATH=$PATH:~/bin
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 export WORDCHARS="_-"
 
+load_conf_folder() {
+	if [ -d $1 ]; then
+		for sh in $1/*; do
+			if [ -f $sh ]; then
+				source $sh
+			fi
+		done
+	fi
+}
+
 # Load different source files
-CONF="$HOME/.shell_aliases $HOME/.shell_functions $HOME/.shell_private /usr/share/autojump/autojump.sh $HOME/.fzf.zsh"
+CONF="/usr/share/autojump/autojump.sh"
 for conf in $(echo $CONF); do
 	if [ -e "$conf" ]; then
 		source $conf
 	fi
 done
-
-# Load host specific files
-[ -e $HOME/.shell_$HOST ] && source $HOME/.shell_$HOST
-if [ -d ~/.shell_$HOST.d ]; then
-   for sh in ~/.shell_$HOST.d/*; do
-      if [ -f $sh ]; then
-         source $sh
-      fi
-   done
-fi
+load_conf_folder ~/.shell.d
+load_conf_folder ~/.shell_$HOST.d
 
 umask 0022
