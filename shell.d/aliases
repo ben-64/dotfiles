@@ -155,7 +155,7 @@ alias psmem10="psmem | tail -10"
 ## get top process eating cpu
 alias grep='grep --color=always'
 alias pscpu="ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 5"
-alias pscpu5="pscpu5 | tail -5"
+alias pscpu5="pscpu | tail -5"
 alias pscpu10="pscpu | tail -10"
 
 ## shows the corresponding process to ...
