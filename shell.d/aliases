@@ -121,8 +121,6 @@ if which grc >/dev/null 2>&1; then
 	alias tail="colour tail"
 	alias traceroute="colour traceroute"
 	alias syslog="sudo colour tail -f -n 100 /var/log/syslog"
-else
-	alias lsc="ls -F $COLORFLAG"
 fi
 
 alias grep="grep $COLORFLAG"
@@ -130,44 +128,20 @@ alias egrep="egrep $COLORFLAG"
 alias fgrep="fgrep $COLORFLAG"
 
 ## ls
+if_exist lsd "alias lsc=lsd" "alias lsc=ls $COLORFLAG"
+if_exist lsd "alias l='lsc -l'" "alias l='lsc -lhF'"
 
-### list all files colorized in long format
-alias l="lsc -lhF $COLORFLAG"
-### list all files with directories
-alias ldir="lc -R"
 ### Show hidden files
-alias l.="lsc -dlhF .* $COLORFLAG"
-alias ldot="l."
-### use colors
-alias ls="ls -F $COLORFLAG"
-### display only files & dir in a v-aling view
-alias l1="ls -1 $COLORFLAG"
+alias l.="lsc -dlhF .*"
 ### displays all files and directories in detail
-alias la="lsc -laFh $COLORFLAG"
-### displays all files and directories in detail (without "." and without "..")
-alias lA="lsc -lAFh $COLORFLAG"
-alias lsa="la"
-### displays all files and directories in detail with newest-files at bottom
-alias lr="lsc -laFhtr $COLORFLAG"
+alias la="lsc -laFh"
+### displays all files and directories in detail with newest-files at the top
+alias lr="lsc -laFht"
 ### show last 10 recently changed files
-alias lt="lsc -altr | grep -v '^d' | tail -n 10"
-### show files and directories (also in sub-dir) that was touched in the last hour
-alias lf="find ./* -ctime -1 | xargs ls -ltr $COLORFLAG"
-### displays files and directories in detail
-alias ll="lsc -lFh $FOLDER_FIRST $COLORFLAG"
-### shows the most recently modified files at the bottom of
-alias llr="lsc -lartFh $FOLDER_FIRST $COLORFLAG"
-### list only directories
-alias lsd="lsc -lFh $COLORFLAG | grep --color=never '^d'"
+alias lm="lsc -alt | grep -v '^d' | tail -n 10"
+if_exist lsd "alias lt='lsd --tree'" "alias lt=tree"
 ### sort by file-size
-alias lS="ls -1FSshr $COLORFLAG"
-### displays files and directories
-alias dir="ls --format=vertical $COLORFLAG"
-### displays more information about files and directories
-alias vdir="ls --format=long $COLORFLAG"
-
-# super-grep ;)
-alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
+alias lS="lsc -1FShrl"
 
 # speedtest: get a 100MB file via wget
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip"
