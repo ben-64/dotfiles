@@ -3,39 +3,10 @@
 # File backup function
 bck() { cp "$1" "$1.back_`date +%Y%m%d_%H%M%S`" ; }
 
-fzf_install() {
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	~/.fzf/install
-}	
-
-gccvuln() {
-	src=${1%*.c}.c
-	exe=${1%*.c}
-	echo gcc $src -w -O0 -ggdb -std=c99 -D_FORTIFY_SOURCE=0 -fno-pie -Wno-format -Wno-format-security -fno-stack-protector -z norelro -z execstack -o $exe
-	gcc $src -w -O0 -ggdb -std=c99 -D_FORTIFY_SOURCE=0 -fno-pie -Wno-format -Wno-format-security -fno-stack-protector -z norelro -z execstack -o $exe
-}
-
-allow_core() {
-	sudo sysctl -w kernel.core_pattern=core
-	ulimit -c 100000
-}
-
 encrypt() {
 	passwd=$(pwqgen)
 	7z a -p$passwd $1.zip $1
 	echo "password = $passwd"
-}
-
-disable_stack_protection() {
-	sudo sysctl -w kernel.randomize_va_space=0
-}
-
-shellstorm_exec() {
-	host=""
-	port=10220
-	u=$1
-	cmd=$2
-	ssh -p $port $u@intruded.net "$cmd"
 }
 
 highlight() {
@@ -51,10 +22,6 @@ pathbin() {
 		n=${p##*/}
 	fi
 	ln -s $p $HOME/bin/link/$n
-}
-
-auth() {
-	chauthisson -q $* | xsel
 }
 
 gps() {
@@ -204,21 +171,6 @@ internet() {
     [ $ans -ge "1" ] && echo "Outside DNS OK" || echo "Outside DNS KO"
 
     sudo hping3 -S -p 80 $google -c 1 > /dev/null 2>&1 && echo "HTTP OK" || echo "HTTP KO"
-}
-
-# Download a private torrent
-dltp() {
-	for i in $*; do
-		scp $i dl:/home/warez/watch/private
-		rm -f $i
-	done
-}
-
-# Download all torrents
-dlta() {
-	for i in ~/Downloads/*torrent; do
-		dispatch_torrent.py $i
-	done
 }
 
 # Wipe wipe directory inside ($1)
