@@ -128,6 +128,7 @@ alias egrep="egrep $COLORFLAG"
 alias fgrep="fgrep $COLORFLAG"
 
 ## ls
+alias ls="ls $COLORFLAG"
 if_exist lsd "alias lsc=lsd" "alias lsc=ls $COLORFLAG"
 if_exist lsd "alias l='lsc -l'" "alias l='lsc -lhF'"
 
