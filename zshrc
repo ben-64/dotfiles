@@ -12,9 +12,9 @@ zstyle ':vcs_info:*' unstagedstr '⚡'
 zstyle ':vcs_info:git*:*' get-revision true
 zstyle ':vcs_info:git*' formats "%{${fg[default]}%} : %{${fg[yellow]}%}[%b%u] %c"
 . ~/.zsh/functions/vcs_functions.sh
-precmd() {
-	vcs_info
-}
+#precmd() {
+#	vcs_info
+#}
 ##############################
 
 # Allow for functions in the prompt.
