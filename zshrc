@@ -72,7 +72,7 @@ unsetopt rm_star_silent
 # Environment variables
 export PS1=$(echo -ne "%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%} : %{$fg[cyan]%}%*\${vcs_info_msg_0_}\n%{$fg[green]%}%(?..[%?])%{$fg[blue]%}%~%f%%%{$reset_color%} ")
 export EDITOR="vim"
-export PATH=$PATH:~/bin:~/.local/bin
+export PATH=~/bin:/sbin:/bin:/usr/sbin:/usr/bin:~/.local/bin
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 export WORDCHARS="_-"
 
