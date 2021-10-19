@@ -86,13 +86,6 @@ load_conf_folder() {
 	fi
 }
 
-# Load different source files
-CONF="/usr/share/autojump/autojump.sh"
-for conf in $(echo $CONF); do
-	if [ -e "$conf" ]; then
-		source $conf
-	fi
-done
 load_conf_folder ~/.shell.d
 load_conf_folder ~/.shell_$HOST.d
 
