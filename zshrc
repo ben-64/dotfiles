@@ -87,6 +87,6 @@ load_conf_folder() {
 }
 
 load_conf_folder ~/.shell.d
-load_conf_folder ~/.shell_$HOST.d
+load_conf_folder ~/.shell_$(hostname -s).d
 
 umask 0022
