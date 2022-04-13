@@ -138,8 +138,6 @@ alias l.="lsc -dlhF .*"
 alias la="lsc -laFh"
 ### displays all files and directories in detail with newest-files at the top
 alias lr="lsc -laFht"
-### show last 10 recently changed files
-alias lm="lsc -alt | grep -v '^d' | tail -n 10"
 if_exist lsd "alias lt='lsd --tree'" "alias lt=tree"
 ### sort by file-size
 alias lS="lsc -1FShrl"
