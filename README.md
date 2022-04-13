@@ -16,6 +16,7 @@ $ git submodule update --init --recursive
 
 ### OSX
 
+- ag: `brew install ag`
 - zoxide: `brew install zoxide`
 - bat: `brew install bat`
 - lsd: `brew install lsd`
