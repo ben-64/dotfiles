@@ -5,14 +5,9 @@ c = get_config()
 c.TerminalIPythonApp.display_banner = False
 c.InteractiveShell.autoindent = True
 c.InteractiveShell.confirm_exit = False
-c.TerminalIPythonApp.nosep = True
-c.PromptManager.in_template = r'{color.LightBlue}[{color.LightCyan}\Y1{color.LightBlue}]{color.Green}|\#> '
-c.PromptManager.in2_template = r'{color.Green}|{color.LightGreen}\D{color.Green}> '
-c.PromptManager.out_template = r'<\#> '
 
 c.InteractiveShellApp.exec_lines = [
     'import os,sys,struct',
-    #'#sys.path.append("/home/ben64/Documents/pentest/tool/ymvunjq/util/lib/python")',
 ]
 
 
