@@ -3,11 +3,9 @@
 lm() {
     if [ $# -eq 1 ]; then
         nb=$1
-        echo "ouin"
     else
         nb=10
     fi
-    alias lsc
     lsc --color=always -altr | grep --color=never -v '^.......d' | tail -n $nb
 }
 
