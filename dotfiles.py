@@ -30,7 +30,7 @@ def main():
     if args.add:
         for f in args.add:
             src = os.path.abspath(os.path.join(args.repo,f))
-            if of.path.exists(src):
+            if os.path.exists(src):
                 dst = os.path.join(home,prefix+f)
                 if os.path.islink(dst) or os.path.exists(dst):
                     ans = "y" if args.force else input(f"File {dst} exists, overwrite (y/N) ? ")
