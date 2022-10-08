@@ -30,7 +30,7 @@ def main():
     if args.add:
         for f in args.add:
             dst = os.path.join(home,prefix+f)
-            if os.path.exists(dst):
+            if os.path.islink(dst) or os.path.exists(dst):
                 ans = "y" if args.force else input("File %s exists, overwrite (y/N) ? " % dst)
                 if ans == "y":
                     if os.path.isdir(dst) and not os.path.islink(dst):
