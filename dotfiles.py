@@ -33,7 +33,7 @@ def main():
             if of.path.exists(src):
                 dst = os.path.join(home,prefix+f)
                 if os.path.islink(dst) or os.path.exists(dst):
-                    ans = "y" if args.force else input("File %s exists, overwrite (y/N) ? " % dst)
+                    ans = "y" if args.force else input(f"File {dst} exists, overwrite (y/N) ? ")
                     if ans == "y":
                         if os.path.isdir(dst) and not os.path.islink(dst):
                             shutil.rmtree(dst)
@@ -49,14 +49,14 @@ def main():
             f = os.path.basename(f)
             if not f in ignore_files:
                 if not os.path.exists(os.path.join(home,prefix+f)):
-                    print("Missing %s" % (f,))
+                    print(f"Missing {f}")
                 elif os.path.realpath(os.path.join(home,prefix+f)) != os.path.abspath(os.path.join(args.repo,f)):
-                    print("Different %s" % (f,))
+                    print(f"Different {f}")
     elif args.list:
         for f in sorted(glob.glob(os.path.join(args.repo,"*"))):
             f = os.path.basename(f)
             if os.path.exists(os.path.join(home,prefix+f)) and os.path.realpath(os.path.join(home,prefix+f)) == os.path.abspath(os.path.join(args.repo,f)):
-                print("%s" % (f,))
+                print(f"{f}")
 
     return 0
 
