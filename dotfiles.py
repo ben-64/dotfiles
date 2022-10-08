@@ -29,17 +29,21 @@ def main():
 
     if args.add:
         for f in args.add:
-            dst = os.path.join(home,prefix+f)
-            if os.path.islink(dst) or os.path.exists(dst):
-                ans = "y" if args.force else input("File %s exists, overwrite (y/N) ? " % dst)
-                if ans == "y":
-                    if os.path.isdir(dst) and not os.path.islink(dst):
-                        shutil.rmtree(dst)
+            src = os.path.abspath(os.path.join(args.repo,f))
+            if of.path.exists(src):
+                dst = os.path.join(home,prefix+f)
+                if os.path.islink(dst) or os.path.exists(dst):
+                    ans = "y" if args.force else input("File %s exists, overwrite (y/N) ? " % dst)
+                    if ans == "y":
+                        if os.path.isdir(dst) and not os.path.islink(dst):
+                            shutil.rmtree(dst)
+                        else:
+                            os.unlink(dst)
                     else:
-                        os.unlink(dst)
-                else:
-                    continue
-            os.symlink(os.path.abspath(os.path.join(args.repo,f)),dst)
+                        continue
+                os.symlink(src,dst)
+            else:
+                print(f"{src} does not exist, ignored")
     elif args.check:
         for f in sorted(glob.glob(os.path.join(args.repo,"*"))):
             f = os.path.basename(f)
