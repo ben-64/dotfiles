@@ -46,7 +46,7 @@ alias greip="grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
 alias ssns="ps -o pid,netns -ax|grep '^[0-9 ]\+$'|sort -k2|uniq -f1|awk '{print $1}'|while read a; do nsenter -n -t $a ss -lptn; done"
 alias ag="ag --path-to-ignore ~/.ignore_ag"
 if_exist batcat "alias bat=batcat"
-if_exist bat "alias c=bat" "alias c=cat"
+if_exist bat "alias c='bat --plain --wrap never --theme TwoDark'" "alias c=cat"
 if_exist hexyl "alias x=hexyl" "alias x=xxd"
 
 ## Change folder
