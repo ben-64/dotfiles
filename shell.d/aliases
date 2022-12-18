@@ -143,9 +143,6 @@ if_exist lsd "alias lt='lsd --tree'" "alias lt=tree"
 ### sort by file-size
 alias lS="lsc -1FShrl"
 
-# speedtest: get a 100MB file via wget
-alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip"
-
 # System utilities
 ## get top process eating memory
 alias psmem="ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6"
