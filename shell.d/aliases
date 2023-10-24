@@ -138,7 +138,7 @@ alias l.="lsc -dlhF .*"
 ### displays all files and directories in detail
 alias la="lsc -laFh"
 ### displays all files and directories in detail with newest-files at the bottom
-alias lt="lsc -laFhtr"
+alias lt="lsc -lFhtr"
 if_exist lsd "alias ltr='lsd --tree'" "alias ltr=tree"
 ### sort by file-size
 alias lS="lsc -1FShrl"
