@@ -136,6 +136,7 @@ un() {
         *.zip|*.ZIP) unzip "$1" ;;
         *.jar|*.JAR) unzip "$1" ;;
 		*.odt|*.ODT) unzip "$1" ;;
+        *.apk|*.APK) unzip "$1" ;;
 		*.rar|*.RAR) unrar x "$1";;
         *) echo "unknow format : $1"; mv $1 ..; ukn=1;;
     esac
@@ -152,6 +153,7 @@ unl() {
         *.zip|*.ZIP) unzip -l "$1" ;;
         *.jar|*.JAR) unzip -l "$1" ;;
 		*.odt|*.ODT) unzip -l "$1" ;;
+		*.apk|*.APK) unzip -l "$1" ;;
 		*.rar|*.RAR) unrar l "$1";;
         *) echo "unknow format : $1" ;;
     esac
@@ -248,6 +250,14 @@ x509() {
 	openssl x509 -in $file -inform $type -noout $PARAM
 }
 
+# Execute command inside docker container
 dke() {
-	sudo docker exec -it $1 /bin/bash
+    [ $# -lt 1 ] && echo "Usage: $0 container [CMDS...]" && return 1
+    container=$1
+    if [ $# -ge 2 ]; then
+        shift
+        docker exec -it $container $*
+    else
+        docker exec -it $container /bin/bash
+    fi
 }
