@@ -17,6 +17,11 @@ if_exist() {
     fi
 }
 
+exist() {
+    which $1 > /dev/null 2>/dev/null
+    return $?
+}
+
 # Win time
 alias hl='highlight'
 alias py='python3'
@@ -46,8 +51,9 @@ alias greip="grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
 alias ssns="ps -o pid,netns -ax|grep '^[0-9 ]\+$'|sort -k2|uniq -f1|awk '{print $1}'|while read a; do nsenter -n -t $a ss -lptn; done"
 alias ag="ag --path-to-ignore ~/.ignore_ag"
 if_exist batcat "alias bat=batcat"
-if_exist bat "alias c='bat --plain --theme TwoDark'" "alias c=cat"
+if_exist bat "alias c='bat --plain'" "alias c=cat"
 if_exist hexyl "alias x=hexyl" "alias x=xxd"
+alias gcm="git commit -m"
 
 ## Change folder
 alias ..='cd ../..'
@@ -130,18 +136,22 @@ alias fgrep="fgrep $COLORFLAG"
 
 ## ls
 alias ls="ls $COLORFLAG"
-if_exist lsd "alias lsc=lsd" "alias lsc=ls $COLORFLAG"
-if_exist lsd "alias l='lsc -l'" "alias l='lsc -lhF'"
 
-### Show hidden files
-alias l.="lsc -dlhF .*"
-### displays all files and directories in detail
-alias la="lsc -laFh"
-### displays all files and directories in detail with newest-files at the bottom
-alias lt="lsc -lFhtr"
-if_exist lsd "alias ltr='lsd --tree'" "alias ltr=tree"
-### sort by file-size
-alias lS="lsc -1FShrl"
+if exist eza; then
+    alias ls='eza --color=always --no-filesize --icons=always --no-time --no-user --no-permissions'
+    alias l='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+    alias ll='eza --color=always --long --git --icons=always'
+    alias lt='ll --sort=modified'
+    alias lz='ll --sort=size'
+    alias lr='ll --tree'
+else
+    alias ls='ls --color'
+    alias l='ls'
+    alias ll='ls -l'
+    alias lt='ll Fhtr'
+    alias lz='ll -1FShr'
+    alias lr='tree'
+fi
 
 # System utilities
 ## get top process eating memory
@@ -150,7 +160,7 @@ alias psmem5="psmem | tail -5"
 alias psmem10="psmem | tail -10"
 
 ## get top process eating cpu
-alias grep='grep --color=always'
+alias grep='grep --color=auto'
 alias pscpu="ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 5"
 alias pscpu5="pscpu | tail -5"
 alias pscpu10="pscpu | tail -10"
