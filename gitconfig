@@ -10,12 +10,14 @@
 [delta]
     navigate = true  # use n and N to move between diff sections
     side-by-side = true
+    features = villsau
 [merge]
     conflictstyle = diff3
 [diff]
     colorMoved = default
 [include]
 	path = ~/.gitconfig_private
+    path = ~/etc/dotfiles/themes.gitconfig
 [color]
 	ui = auto
 [push]
