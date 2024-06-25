@@ -1,11 +1,11 @@
-if [ ! -f /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme ]; then
+if [ ! -f /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme ]; then
     if [ -f ~/local/powerlevel10k/powerlevel10k.zsh-theme ]; then
         THEME="$HOME/local/powerlevel10k/powerlevel10k.zsh-theme"
     else
         return
     fi
 else
-    THEME="/usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme"
+    THEME="/usr/local/share/powerlevel10k/powerlevel10k.zsh-theme"
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
