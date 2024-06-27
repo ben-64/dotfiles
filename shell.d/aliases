@@ -148,7 +148,7 @@ else
     alias ls='ls --color'
     alias l='ls'
     alias ll='ls -l'
-    alias lt='ll Fhtr'
+    alias lt='ll -Fhtr'
     alias lz='ll -1FShr'
     alias lr='tree'
 fi
