@@ -10,8 +10,10 @@ fi
 export BAT_THEME=tokyonight_night
 export BAT_THEME=gruvbox-dark
 # thefuck alias
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
+if exist thefuck; then
+    eval $(thefuck --alias)
+    eval $(thefuck --alias fk)
+fi
 
 
 ## FZF
