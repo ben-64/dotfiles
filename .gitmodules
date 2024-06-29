@@ -34,3 +34,6 @@
 [submodule "vim/bundle/vim-ingo-library"]
 	path = vim/bundle/vim-ingo-library
 	url = https://github.com/inkarkat/vim-ingo-library
+[submodule "vim/bundle/vim-polyglot"]
+	path = vim/bundle/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot

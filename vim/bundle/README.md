@@ -13,6 +13,8 @@ execute pathogen#infect()
 
 # Bundles
 
+In order to add a new plugin: `git submodule add GITURL`
+
 - fzf: Pour avoir un historique puissant
 - lightline: La barre du bas
 - nerdtree: F2 pour naviguer dans le FS
@@ -23,6 +25,7 @@ execute pathogen#infect()
 - CCTree: Fonctionne avec des programmes en C pour afficher les fonctions appelantes ou appelées d'une fonction
 - mark: Pour coloriser un ou plusieurs mots dans tout le buffer
 - vim-matchup: highlight, navigate, and operate on sets of matching text (use `%`) (not working on python for now)
+- vim-polyglot: A collection of language packs for Vim
 
 ## vim-mark
 
