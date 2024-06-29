@@ -126,8 +126,8 @@ alias fgrep="fgrep $COLORFLAG"
 alias ls="ls $COLORFLAG"
 
 if exist eza; then
-    alias ls='eza --color=always --no-filesize --icons=always --no-time --no-user --no-permissions'
-    alias l='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+    alias ls='eza --color=always --no-filesize --no-time --no-user --no-permissions'
+    alias l='eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions'
     alias ll='eza --color=always --long --git --icons=always'
     alias lt='ll --sort=modified'
     alias lz='ll --sort=size'
