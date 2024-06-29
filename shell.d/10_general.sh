@@ -69,10 +69,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
 
 ## FZF Git
-if [ -f ~/Documents/tools/fzf-git.sh/fzf-git.sh ]; then
+if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then
     unset beep
     set nobeep
-    source ~/Documents/tools/fzf-git.sh/fzf-git.sh
+    source $TOOLS/fzf-git.sh/fzf-git.sh
     gwt() {
         cd "$(_fzf_git_worktrees --no-multi)"
     }
@@ -88,10 +88,10 @@ if [ -f ~/Documents/tools/fzf-git.sh/fzf-git.sh ]; then
 fi
 
 ## forgit
-if [ -f ~/Documents/tools/forgit/forgit.plugin.zsh ]; then
+if [ -f $TOOLS/forgit/forgit.plugin.zsh ]; then
     export COLUMNS
     export FZF_PREVIEW_COLUMNS
     export FORGIT_PAGER='delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
-    export FORGIT_INSTALL_DIR=~/Documents/tools/forgit
-    source ~/Documents/tools/forgit/forgit.plugin.zsh
+    export FORGIT_INSTALL_DIR=$OOLS/forgit
+    source $TOOLS/forgit/forgit.plugin.zsh
 fi
