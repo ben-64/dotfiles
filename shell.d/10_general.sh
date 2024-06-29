@@ -93,5 +93,6 @@ if [ -f $TOOLS/forgit/forgit.plugin.zsh ]; then
     export FZF_PREVIEW_COLUMNS
     export FORGIT_PAGER='delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
     export FORGIT_INSTALL_DIR=$OOLS/forgit
+    export FORGIT_LOG_FZF_OPTS="--reverse"
     source $TOOLS/forgit/forgit.plugin.zsh
 fi
