@@ -76,10 +76,14 @@ export PATH=~/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:~/.local/bin
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 export WORDCHARS="_-"
 
+# Load a first local script that could be used by others
+[ -f ~/.shell_$(hostname -s).d/init_host.sh ] && source ~/.shell_$(hostname -s).d/init_host.sh
+
 load_conf_folder() {
 	if [ -d $1 ]; then
 		for sh in $1/*; do
-			if [ -f $sh ]; then
+            # Do not loaod the first local script, it has already been load if it exists
+			if [ -f $sh ] && [ $sh != "~/.shell_$(hostname -s).d/init_host.sh" ]; then
 				source $sh
 			fi
 		done
