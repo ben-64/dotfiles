@@ -18,7 +18,7 @@ eval $(thefuck --alias fk)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # -- Use fd instead of fzf --
-
+export FZF_DEFAULT_OPTS='--height 80% --tmux bottom,40% --layout reverse --border top'
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -66,11 +66,20 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
 
+
 ## FZF Git
 if [ -f ~/Documents/tools/fzf-git.sh/fzf-git.sh ]; then
     unset beep
     set nobeep
     source ~/Documents/tools/fzf-git.sh/fzf-git.sh
+    _fzf_git_fzf() {
+  fzf-tmux -p80%,60% -- \
+    --layout=reverse --multi --height=80% --min-height=20 --border \
+    --border-label-pos=2 \
+    --color='header:italic:underline,label:blue' \
+    --preview-window='right,50%,border-left' \
+    --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "$@"
+}
     gwt() {
         cd "$(_fzf_git_worktrees --no-multi)"
     }
