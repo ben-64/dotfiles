@@ -14,4 +14,4 @@ def repr_str(s):
     l = len(s)
     return f"{s} [len:{l}]"
 
-custom_repr(True)
+#custom_repr(False)
