@@ -143,7 +143,7 @@ if exist eza; then
     alias ll='eza --color=always --long --git --icons=always'
     alias lt='ll --sort=modified'
     alias lz='ll --sort=size'
-    alias lr='ll --tree'
+    alias lr='eza --color=always --tree'
 else
     alias ls='ls --color'
     alias l='ls'
