@@ -10,8 +10,10 @@ fi
 export BAT_THEME=tokyonight_night
 export BAT_THEME=gruvbox-dark
 # thefuck alias
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
+if exist thefuck; then
+    eval $(thefuck --alias)
+    eval $(thefuck --alias fk)
+fi
 
 
 ## FZF
@@ -68,9 +70,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 
 ## FZF Git
-if [ -f ~/Documents/tools/fzf-git.sh/fzf-git.sh ]; then
+if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then
     unset beep
     set nobeep
+<<<<<<< HEAD
     source ~/Documents/tools/fzf-git.sh/fzf-git.sh
     _fzf_git_fzf() {
   fzf-tmux -p80%,60% -- \
@@ -80,6 +83,11 @@ if [ -f ~/Documents/tools/fzf-git.sh/fzf-git.sh ]; then
     --preview-window='right,50%,border-left' \
     --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "$@"
 }
+||||||| c9e8741
+    source ~/Documents/tools/fzf-git.sh/fzf-git.sh
+=======
+    source $TOOLS/fzf-git.sh/fzf-git.sh
+>>>>>>> db3fa648f7da353078f8944019f49026564c5261
     gwt() {
         cd "$(_fzf_git_worktrees --no-multi)"
     }
@@ -95,10 +103,11 @@ if [ -f ~/Documents/tools/fzf-git.sh/fzf-git.sh ]; then
 fi
 
 ## forgit
-if [ -f ~/Documents/tools/forgit/forgit.plugin.zsh ]; then
+if [ -f $TOOLS/forgit/forgit.plugin.zsh ]; then
     export COLUMNS
     export FZF_PREVIEW_COLUMNS
     export FORGIT_PAGER='delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}'
-    export FORGIT_INSTALL_DIR=~/Documents/tools/forgit
-    source ~/Documents/tools/forgit/forgit.plugin.zsh
+    export FORGIT_INSTALL_DIR=$OOLS/forgit
+    export FORGIT_LOG_FZF_OPTS="--reverse"
+    source $TOOLS/forgit/forgit.plugin.zsh
 fi

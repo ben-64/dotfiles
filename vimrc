@@ -30,7 +30,7 @@ syntax on
 " 	mustang, vitamins, desert, vylight, molokai
 
 set t_Co=256
-colorscheme mustang
+colorscheme tokyonight
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -122,7 +122,7 @@ map <F2> :NERDTreeToggle<CR>
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'tokyonight',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
