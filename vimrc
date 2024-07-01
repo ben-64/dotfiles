@@ -70,7 +70,7 @@ filetype plugin indent on
 let mapleader = ","
 
 " Define New Custom Ag command ignoring some files defined in ~/.ignore_ag
-command! -bang -nargs=* AgC call fzf#vim#ag(<q-args>, "--path-to-ignore ~/.ignore_ag", <bang>0)
+command! -bang -nargs=* AgC call fzf#vim#ag(<q-args>, "--path-to-ignore ~/.ignore_ag", fzf#vim#with_preview(), <bang>0)
 
 " Shortcuts
 "map <C-t> :tab split<CR>
