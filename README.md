@@ -26,6 +26,7 @@ $ ~/.fzf/install
 - ag: `brew install ag`
 - zoxide: `brew install zoxide`
 - bat: `brew install bat`
-- lsd: `brew install lsd`
+- delta: `brew install delta`
+- eza: `brew install eza`
 - hexyl: `brew install hexyl`
 - power10k: `brew install romkatv/powerlevel10k/powerlevel10k`
