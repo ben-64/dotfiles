@@ -42,6 +42,7 @@ if_exist bat "alias c='bat --plain'" "alias c=cat"
 if_exist hexyl "alias x=hexyl" "alias x=xxd"
 alias gcm="git commit -m"
 alias y="yazi"
+alias nv="nvim"
 
 ## Change folder
 alias ..='cd ../..'

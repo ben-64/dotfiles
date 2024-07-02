@@ -73,8 +73,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then
     unset beep
     set nobeep
-<<<<<<< HEAD
-    source ~/Documents/tools/fzf-git.sh/fzf-git.sh
     _fzf_git_fzf() {
   fzf-tmux -p80%,60% -- \
     --layout=reverse --multi --height=80% --min-height=20 --border \
@@ -83,11 +81,7 @@ if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then
     --preview-window='right,50%,border-left' \
     --bind='ctrl-/:change-preview-window(down,50%,border-top|hidden|)' "$@"
 }
-||||||| c9e8741
-    source ~/Documents/tools/fzf-git.sh/fzf-git.sh
-=======
     source $TOOLS/fzf-git.sh/fzf-git.sh
->>>>>>> db3fa648f7da353078f8944019f49026564c5261
     gwt() {
         cd "$(_fzf_git_worktrees --no-multi)"
     }
