@@ -16,3 +16,4 @@ Plugin management is done with [lazy](https://lazy.folke.io/)
 - [todo-comments](https://github.com/folke/todo-comments.nvim): Highlight and search for specific comments
 - [mason](https://github.com/williamboman/mason.nvim): Manage external editor such as LSP server
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): Configuration for nvim as a LSP client
+- [interestingwords](https://github.com/Mr-LLLLL/interestingwords.nvim): Highlight with different colors words
