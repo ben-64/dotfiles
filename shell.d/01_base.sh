@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TOOLS="${TOOLS:-~/Documents/tools}"
+TOOLS="${TOOLS:-$HOME/Documents/tools}"
 
 ### FUNCTIONS
 if_exist() {
