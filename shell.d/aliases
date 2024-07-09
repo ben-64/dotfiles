@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Use nvim if present
+if exist nvim; then
+  alias vi=nvim
+fi
+
 # Security
 alias chown="chown --preserve-root"
 alias chmod="chmod --preserve-root"
