@@ -42,6 +42,7 @@ _fzf_comprun() {
     cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo ${}'"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    pass)          fzf --preview 'echo {}'                   "$@" ;;
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
@@ -71,11 +72,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # Handle ** for pass
 _fzf_complete_pass() {
-  _fzf_complete --multi --reverse --prompt="pass> " -- "$@" < <(
-    fd -t f | sed -e "s/\.gpg//g"
+  _fzf_complete --reverse --prompt="pass> " -- "$@" < <(
+    fd --type f . $HOME/.password-store | sed -e "s#$HOME/.password-store/\(.*\)\.gpg#\1#g"
   )
 }
-
 
 ## FZF Git
 if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then
