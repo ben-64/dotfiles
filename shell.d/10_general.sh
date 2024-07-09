@@ -69,6 +69,14 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
 
 
+# Handle ** for pass
+_fzf_complete_pass() {
+  _fzf_complete --multi --reverse --prompt="pass> " -- "$@" < <(
+    fd -t f | sed -e "s/\.gpg//g"
+  )
+}
+
+
 ## FZF Git
 if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then
     unset beep
