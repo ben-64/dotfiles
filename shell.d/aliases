@@ -58,7 +58,6 @@ alias .5='cd ../../../../..'
 alias dmesg='dmesg -T'
 
 alias less='less -R'
-alias diff="colordiff"
 alias mountc="mount|column -t"
 alias diffw="git diff --word-diff --no-index"
 alias difft="diff --brief -r"
@@ -94,30 +93,6 @@ fi
       fi
     fi
   fi
-
-## GRC
-if which grc >/dev/null 2>&1; then
-	alias colour="grc -es --colour=auto"
-	alias as="colour as"
-	alias configure="colour ./configure"
-	alias diff="colour diff"
-	alias dig="colour dig"
-	alias g++="colour g++"
-	alias gas="colour gas"
-	alias gcc="colour gcc"
-	alias head="colour head"
-	alias ifconfig="colour ifconfig"
-	alias ld="colour ld"
-	alias lsc="colour ls"
-	alias make="colour make"
-	alias mount="colour mount"
-	alias netstat="colour netstat"
-	alias ping="colour ping"
-	alias ps="colour ps"
-	alias tail="colour tail"
-	alias traceroute="colour traceroute"
-	alias syslog="sudo colour tail -f -n 100 /var/log/syslog"
-fi
 
 alias grep="grep $COLORFLAG"
 alias egrep="egrep $COLORFLAG"
