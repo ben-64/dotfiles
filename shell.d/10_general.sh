@@ -5,10 +5,10 @@ if [ -f ~/local/env/bin/activate ]; then
   source ~/local/env/bin/activate
 fi  
 
-
 # Some ENV
 export BAT_THEME=tokyonight_night
 export BAT_THEME=gruvbox-dark
+
 # thefuck alias
 if exist thefuck; then
     eval $(thefuck --alias)
@@ -76,6 +76,34 @@ _fzf_complete_pass() {
     fd --type f . $HOME/.password-store | sed -e "s#$HOME/.password-store/\(.*\)\.gpg#\1#g"
   )
 }
+
+
+# ALT-F - Use cheatsheets
+fzf-cheatsheets-widget() {
+  setopt localoptions pipefail no_aliases 2> /dev/null
+  local cheatsheet="$(
+  $(__fzfcmd) --preview 'bat -n --color always '$CHEATSHEETS'/{}' --reverse --prompt='cheatsheet> ' -- "$@" < <(
+  fd --type f --hidden --exclude .git . $CHEATSHEETS | sed -e "s#$CHEATSHEETS/\(.*\)#\1#g"))"
+  if [[ -z "$cheatsheet" ]]; then
+    zle redisplay
+    return 0
+  fi
+  zle push-line
+  BUFFER=" (cd $CHEATSHEETS; vi ${cheatsheet})" # Starts with a %20 to not store command
+  zle accept-line
+  local ret=$?
+  unset cheatsheet
+
+  TRAPEXIT() {
+   zle reset-prompt
+  }
+
+  return $ret
+}
+zle     -N             fzf-cheatsheets-widget
+bindkey -M emacs '\eg' fzf-cheatsheets-widget
+bindkey -M vicmd '\eg' fzf-cheatsheets-widget
+bindkey -M viins '\eg' fzf-cheatsheets-widget
 
 ## FZF Git
 if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then

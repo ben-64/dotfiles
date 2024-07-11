@@ -1,6 +1,7 @@
 #!/bin/sh
 
 TOOLS="${TOOLS:-$HOME/Documents/tools}"
+CHEATSHEETS="${CHEATSHEETS:-$HOME/Documents/cheatsheets}"
 
 ### FUNCTIONS
 if_exist() {
