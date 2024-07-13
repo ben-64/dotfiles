@@ -78,7 +78,7 @@ _fzf_complete_pass() {
 }
 
 
-# ALT-F - Use cheatsheets
+# ALT-G - Use cheatsheets
 fzf-cheatsheets-widget() {
   setopt localoptions pipefail no_aliases 2> /dev/null
   local cheatsheet="$(

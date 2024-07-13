@@ -261,3 +261,17 @@ dke() {
         docker exec -it $container /bin/bash
     fi
 }
+
+# Choose cheatsheets I want to see
+cheatsheets() {
+  (cd $CHEATSHEETS; 
+    cheatsheet=$($(__fzfcmd) --preview 'bat -n --color always '$CHEATSHEETS'/{}' --reverse --prompt='cheatsheet> ' -- "$@" < <(fd --type f --hidden --exclude .git . $CHEATSHEETS | sed -e "s#$CHEATSHEETS/\(.*\)#\1#g"));
+  [ ! -z $cheatsheet ] && vi $cheatsheet)
+}
+
+# Use pass with fzf
+pass_fzf() {
+
+  pass=$($(__fzfcmd) --no-mouse --preview 'echo "Hit TAB to display {}"' --bind 'tab:preview:pass {}' --reverse --prompt='pass> ' -- "$@" < <(fd --type f . $HOME/.password-store | sed -e "s#$HOME/.password-store/\(.*\)\.gpg#\1#g"));
+  [ ! -z $pass ] && pass -c $pass
+}
