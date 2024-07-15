@@ -265,7 +265,7 @@ dke() {
 # Choose cheatsheets I want to see
 cheatsheets() {
   (cd $CHEATSHEETS; 
-    cheatsheet=$($(__fzfcmd) --preview 'bat -n --color always '$CHEATSHEETS'/{}' --reverse --prompt='cheatsheet> ' -- "$@" < <(fd --type f --hidden --exclude .git . $CHEATSHEETS | sed -e "s#$CHEATSHEETS/\(.*\)#\1#g"));
+    cheatsheet=$($(__fzfcmd) --preview 'bat -n --color always '$CHEATSHEETS'/{}' --preview-window '80%,border-double' --bind 'focus:transform-preview-label:echo {+},up:preview-up,down:preview-down' --reverse --prompt='cheatsheet> ' -- "$@" < <(fd --type f --hidden --exclude .git . $CHEATSHEETS | sed -e "s#$CHEATSHEETS/\(.*\)#\1#g"));
   [ ! -z $cheatsheet ] && vi $cheatsheet)
 }
 
