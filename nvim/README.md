@@ -2,6 +2,8 @@
 
 Plugin management is done with [lazy](https://lazy.folke.io/)
 
+In order to disable a plugin it is possible to add a `enabled = false` in the return.
+
 - [telescope](https://github.com/nvim-telescope/telescope.nvim): Fuzzy finder with fzf
 - [which-key](https://github.com/folke/which-key.nvim): Display popup with possible keybindings
 - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua): File explorer
@@ -17,3 +19,30 @@ Plugin management is done with [lazy](https://lazy.folke.io/)
 - [mason](https://github.com/williamboman/mason.nvim): Manage external editor such as LSP server
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): Configuration for nvim as a LSP client
 - [interestingwords](https://github.com/Mr-LLLLL/interestingwords.nvim): Highlight with different colors words
+
+## autopairs
+
+- Disable `'` for markdown
+
+```lua
+    npairs.get_rule("'")[1]:with_pair(function()
+        if vim.bo.filetype == 'markdown' then
+            return false
+        end
+    end)
+```
+
+- Disable bacquotes is harder, I don't know why
+
+```lua
+    npairs.add_rules({
+      Rule("`", "`", "markdown")
+        :with_pair(function() return false end)  -- Cette ligne désactive l'ajout automatique de backquotes
+    })
+
+    npairs.get_rule("`")[1]:with_pair(function()
+        if vim.bo.filetype == 'markdown' then
+            return false
+        end
+    end)
+```
