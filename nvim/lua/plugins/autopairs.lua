@@ -5,11 +5,10 @@ return {
     "hrsh7th/nvim-cmp",
   },
   config = function()
-    -- import nvim-autopairs
-    local autopairs = require("nvim-autopairs")
+    local npairs = require("nvim-autopairs")
 
     -- configure autopairs
-    autopairs.setup({
+    npairs.setup({
       check_ts = true, -- enable treesitter
       ts_config = {
         lua = { "string" }, -- don't add pairs in lua string treesitter nodes
@@ -26,5 +25,6 @@ return {
 
     -- make autopairs and completion work together
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
   end,
 }
