@@ -48,6 +48,7 @@ if_exist hexyl "alias x=hexyl" "alias x=xxd"
 alias gcm="git commit -m"
 alias y="yazi"
 alias nv="nvim"
+alias v=nvim
 
 ## Change folder
 alias ..='cd ../..'
