@@ -1,0 +1,45 @@
+{
+	"vulnb": {
+		"prefix": "vulnb",
+		"body": [
+      "\\begin{VulnBloc}{vuln:$1}{$2}{$3}",
+      "\\Recocouverte{reco:$4}",
+          "$0",
+      "\\end{VulnBloc}"
+		]
+	},
+	"recob": {
+		"prefix": "recob",
+		"body": [
+      "\\begin{Reco}{reco:$1}{$2}{$3}",
+      "\\Priorite{court terme}",
+      "\\Responsable{}",
+          "$0",
+      "\\end{Reco}"
+		]
+	},
+	"extract": {
+		"prefix": "extract",
+		"body": [
+      "\\begin{extract}{$1}{$2}",
+          "$0",
+      "\\end{extract}"
+		]
+	},
+	"ccode": {
+		"prefix": "ccode",
+		"body": [
+      "\\begin{ccode}{$1}",
+          "$0",
+      "\\end{ccode}"
+		]
+	},
+	"textt": {
+		"prefix": "tt",
+		"body": ["\\texttt{$1}"]
+	},
+	"emph": {
+		"prefix": "ep",
+		"body": ["\\emph{$1}"]
+	}
+}

@@ -1,0 +1,15 @@
+{
+  "name": "mysnippets",
+  "contributes": {
+    "snippets" : [
+      {
+        "language": ["tex","plaintex"],
+        "path": "latex.json"
+      },
+      {
+        "language": ["python"],
+        "path": "python.json"
+      }
+    ]
+  }
+}

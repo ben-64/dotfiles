@@ -1,0 +1,6 @@
+{
+	"print_fstring": {
+		"prefix": "pf",
+		"body": ["print(\"$1 {}\")"]
+	}
+}
