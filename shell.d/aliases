@@ -49,6 +49,8 @@ alias gcm="git commit -m"
 alias y="yazi"
 alias nv="nvim"
 alias v=nvim
+alias gp="git pull"
+alias gP="git push"
 
 ## Change folder
 alias ..='cd ../..'
