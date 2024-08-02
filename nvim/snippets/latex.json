@@ -1,4 +1,8 @@
 {
+	"begin": {
+		"prefix": "beg",
+		"body": ["\\begin{$1}\n\n\\end{$1}"]
+	},
 	"vulnb": {
 		"prefix": "vulnb",
 		"body": [
@@ -21,7 +25,7 @@
 	"extract": {
 		"prefix": "extract",
 		"body": [
-      "\\begin{extract}{$1}{$2}",
+      "\\begin{extract}{$1}{ext:$2}",
           "$0",
       "\\end{extract}"
 		]
@@ -34,6 +38,10 @@
       "\\end{ccode}"
 		]
 	},
+	"textbf": {
+		"prefix": "bf",
+		"body": ["\\textbf{$1}"]
+	},
 	"textt": {
 		"prefix": "tt",
 		"body": ["\\texttt{$1}"]
@@ -41,5 +49,17 @@
 	"emph": {
 		"prefix": "ep",
 		"body": ["\\emph{$1}"]
+	},
+ 	"label": {
+		"prefix": "lab",
+		"body": ["\\label{sec:$1}"]
+	},
+ "item": {
+		"prefix": "it",
+		"body": ["\\item $1"]
+	},
+  "itemize": {
+		"prefix": "item",
+		"body": ["\\begin{itemize}","\\item $1","\\item $2","\\end{itemize}"]
 	}
 }
