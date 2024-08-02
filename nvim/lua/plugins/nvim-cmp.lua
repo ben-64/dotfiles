@@ -51,7 +51,7 @@ return {
     }
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-    require("luasnip.loaders.from_vscode").lazy_load()
+    -- require("luasnip.loaders.from_vscode").lazy_load() -- Load friendly-snippets
     require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" }})
 
     cmp.setup({
@@ -70,7 +70,7 @@ return {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<LEFT>"] = cmp.mapping.abort(), -- close completion window
-        ["<RIGHT>"] = cmp.mapping.confirm({ select = false }),
+        ["<TAB>"] = cmp.mapping.confirm({ select = false }),
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
