@@ -36,6 +36,7 @@ return {
         "pyright",
         "rust_analyzer",
         "tsserver",
+        "texlab",
       },
     })
   end,
