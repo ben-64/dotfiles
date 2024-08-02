@@ -19,6 +19,7 @@ In order to disable a plugin it is possible to add a `enabled = false` in the re
 - [mason](https://github.com/williamboman/mason.nvim): Manage external editor such as LSP server
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): Configuration for nvim as a LSP client
 - [interestingwords](https://github.com/Mr-LLLLL/interestingwords.nvim): Highlight with different colors words
+- [tint](https://github.com/levouh/tint.nvim): Allow to dim the unactive window
 
 ## autopairs
 
