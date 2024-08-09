@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 # If there is a venv, do load it
-if [ -f ~/local/env/bin/activate ]; then
-  source ~/local/env/bin/activate
+if [ -f $PYENV/bin/activate ]; then
+  source $PYENV/bin/activate
 fi  
 
 # Some ENV
