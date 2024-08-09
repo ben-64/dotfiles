@@ -2,7 +2,7 @@
 
 TOOLS="${TOOLS:-$HOME/Documents/tools}"
 CHEATSHEETS="${CHEATSHEETS:-$HOME/Documents/cheatsheets}"
-PYENV="${PYENV:$HOME/local/env}"
+PYENV="${PYENV:-$HOME/local/env}"
 
 ### FUNCTIONS
 if_exist() {
