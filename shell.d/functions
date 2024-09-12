@@ -275,3 +275,13 @@ pass_fzf() {
   pass=$($(__fzfcmd) --no-mouse --preview 'echo "Hit TAB to display {}"' --bind 'tab:preview:pass {}' --reverse --prompt='pass> ' -- "$@" < <(fd --type f . $HOME/.password-store | sed -e "s#$HOME/.password-store/\(.*\)\.gpg#\1#g"));
   [ ! -z $pass ] && pass -c $pass
 }
+
+# List recursively sorted by time
+lstime() {
+	if [ $# -eq 1 ]; then
+		nb=$1
+	else
+		nb=10
+	fi
+  find . -type f -exec gstat --format '%Y :%y %n' "{}" \; | sort -nr | cut -d: -f2- | head -n $nb
+}
