@@ -35,7 +35,7 @@ return {
         "markdown_oxide",
         "pyright",
         "rust_analyzer",
-        "tsserver",
+        "ts_ls",
         "texlab",
       },
     })
