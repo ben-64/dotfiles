@@ -48,3 +48,8 @@ In order to disable a plugin it is possible to add a `enabled = false` in the re
         end
     end)
 ```
+
+## treesitter
+
+- Activate tree display: `:TSPlaygroundToggle`
+- Highlight category of node: `:TSHighlightCapturesUnderCursor`
