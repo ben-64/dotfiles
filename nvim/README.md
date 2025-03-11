@@ -22,6 +22,13 @@ In order to disable a plugin it is possible to add a `enabled = false` in the re
 - [tint](https://github.com/levouh/tint.nvim): Allow to dim the unactive window
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim): Display signs on the columns regarding git status of each line
 
+## Update
+
+```vi
+:Lazy
+```
+ Then u
+
 ## autopairs
 
 - Disable `'` for markdown
