@@ -30,3 +30,9 @@ $ ~/.fzf/install
 - eza: `brew install eza`
 - hexyl: `brew install hexyl`
 - power10k: `brew install romkatv/powerlevel10k/powerlevel10k`
+
+# Nice tools
+
+## https://github.com/Aloxaf/fzf-tab
+
+Allow to have `fzf` completion with commands
