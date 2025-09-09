@@ -35,8 +35,6 @@ alias lo="libreoffice"
 alias ts="tail -f /var/log/syslog"
 alias tf="tail -f"
 alias g="git"
-alias tref='trans :en :fr'
-alias trfe='trans :fr :en'
 alias gdb='gdb -q'
 alias ush='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias greip="grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"

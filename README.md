@@ -38,3 +38,9 @@ export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 ```
+
+# Nice tools
+
+## https://github.com/Aloxaf/fzf-tab
+
+Allow to have `fzf` completion with commands

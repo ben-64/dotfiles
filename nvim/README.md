@@ -21,6 +21,14 @@ In order to disable a plugin it is possible to add a `enabled = false` in the re
 - [interestingwords](https://github.com/Mr-LLLLL/interestingwords.nvim): Highlight with different colors words
 - [tint](https://github.com/levouh/tint.nvim): Allow to dim the unactive window
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim): Display signs on the columns regarding git status of each line
+- [flash.nvim](https://github.com/folke/flash.nvim): Navigate through label
+
+## Update
+
+```vi
+:Lazy
+```
+ Then u
 
 ## autopairs
 
@@ -48,3 +56,8 @@ In order to disable a plugin it is possible to add a `enabled = false` in the re
         end
     end)
 ```
+
+## treesitter
+
+- Activate tree display: `:TSPlaygroundToggle`
+- Highlight category of node: `:TSHighlightCapturesUnderCursor`

@@ -234,7 +234,7 @@ check_host() {
 }
 
 nocomment() {
-	grep -v '^$\|^\s*\#' $1
+  grep -Ev '(^$|^\s*\#)'	$1
 }
 
 x509() {
@@ -284,4 +284,13 @@ lstime() {
 		nb=10
 	fi
   find . -type f -exec gstat --format '%Y :%y %n' "{}" \; | sort -nr | cut -d: -f2- | head -n $nb
+}
+
+# Stay in the current folder when exiting yazi
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
 }
