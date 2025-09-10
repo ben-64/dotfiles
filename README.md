@@ -31,6 +31,14 @@ $ ~/.fzf/install
 - hexyl: `brew install hexyl`
 - power10k: `brew install romkatv/powerlevel10k/powerlevel10k`
 
+- GPG agent
+```
+$ cat ~/.shell_$(hostname -s).d/gpgagent.sh
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+```
+
 # Nice tools
 
 ## https://github.com/Aloxaf/fzf-tab
