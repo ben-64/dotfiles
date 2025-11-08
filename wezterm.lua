@@ -85,6 +85,11 @@ config.keys = {
     mods = 'ALT',
     action = wezterm.action.SendString("\x1bf")
   },
+  {
+    key = "d",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SendString("tmux detach-client\n")
+  },
 }
 
 -- my coolnight colorscheme:
