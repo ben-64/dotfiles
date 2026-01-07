@@ -17,7 +17,7 @@ fi
 
 
 ## FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh || source <(fzf --zsh)
 
 # -- Use fd instead of fzf --
 export FZF_DEFAULT_OPTS='--height 80% --tmux bottom,40% --layout reverse --border top'
