@@ -25,7 +25,7 @@ config.macos_window_background_blur = 0
 
 config.inactive_pane_hsb = {
   saturation = 0.6,
-  brightness = 0.1,
+  brightness = 0.4,
 }
 
 config.keys = {
