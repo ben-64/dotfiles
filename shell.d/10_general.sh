@@ -141,7 +141,3 @@ if [ -f $TOOLS/forgit/forgit.plugin.zsh ]; then
     export FORGIT_LOG_FZF_OPTS="--reverse"
     source $TOOLS/forgit/forgit.plugin.zsh
 fi
-
-## Starship
-export STARSHIP_CONFIG=~/etc/dotfiles/starship.toml
-echo 'eval "$(starship init zsh)"' >> ~/.zshrc
