@@ -29,7 +29,7 @@ $ ~/.fzf/install
 - delta: `brew install delta`
 - eza: `brew install eza`
 - hexyl: `brew install hexyl`
-- power10k: `brew install romkatv/powerlevel10k/powerlevel10k`
+- starship: `brew install starship`
 
 - GPG agent
 ```

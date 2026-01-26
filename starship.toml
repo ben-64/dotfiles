@@ -1,0 +1,47 @@
+"$schema" = 'https://starship.rs/config-schema.json'  # Auto-complétion
+
+add_newline = true  # Ligne vide avant prompt
+
+# Symbole d'invite (vert si OK, rouge si erreur)
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[✘](bold red)'
+
+# Répertoire courant (cyan, tronqué intelligemment)
+[directory]
+style = 'bold blue'
+truncation_length = 3
+truncate_to_repo = true
+
+# Git branch (violet)
+[git_branch]
+symbol = '🌱 '
+style = 'bold purple'
+
+# Git status (vert/rouge selon clean/dirty)
+[git_status]
+style = 'bold yellow'
+
+# Langages (couleurs variées)
+[rust]
+symbol = '🦀 '
+style = 'bold red'
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = '🐍 '
+style = 'bold yellow'
+[nodejs]
+symbol = '🔷 '
+style = 'bold green'
+
+# Durée commande (>2s)
+[cmd_duration]
+min_time = 2000
+format = 'took [$duration](bold yellow) '
+
+# Palette de couleurs pour cohérence
+[palettes.custom]
+rosewater = '#f5e0dc'
+flamingo = '#f2cdcd'
+
+palette = 'custom'
