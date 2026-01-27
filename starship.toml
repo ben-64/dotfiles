@@ -10,38 +10,39 @@ error_symbol = '[✘](bold red)'
 # Répertoire courant (cyan, tronqué intelligemment)
 [directory]
 style = 'bold blue'
-truncation_length = 3
-truncate_to_repo = true
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = '…/'
 
 # Git branch (violet)
 [git_branch]
+disabled = true
 symbol = '🌱 '
 style = 'bold purple'
 
 # Git status (vert/rouge selon clean/dirty)
 [git_status]
+disabled = true
 style = 'bold yellow'
+
+[gcloud]
+detect_env_vars = ['GCP']
 
 # Langages (couleurs variées)
 [rust]
 symbol = '🦀 '
 style = 'bold red'
+
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 symbol = '🐍 '
 style = 'bold yellow'
-[nodejs]
-symbol = '🔷 '
-style = 'bold green'
+
+[lua]
+disabled = true
 
 # Durée commande (>2s)
 [cmd_duration]
 min_time = 2000
 format = 'took [$duration](bold yellow) '
 
-# Palette de couleurs pour cohérence
-[palettes.custom]
-rosewater = '#f5e0dc'
-flamingo = '#f2cdcd'
-
-palette = 'custom'
