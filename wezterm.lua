@@ -92,6 +92,15 @@ config.keys = {
   },
 }
 
+config.mouse_bindings = {
+  -- Use ALT to move window
+  {
+    event = { Drag = { streak = 1, button = 'Left' } },
+    mods = 'ALT',
+    action = wezterm.action.StartWindowDrag,
+  },
+}
+
 -- my coolnight colorscheme:
 --config.colors = {
 --	foreground = "#CBE0F0",
