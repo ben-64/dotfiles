@@ -1,13 +1,9 @@
 #!/bin/zsh
 
-# If there is a venv, do load it
-if [ -f $PYENV/bin/activate ]; then
-  source $PYENV/bin/activate
-fi  
-
 # Some ENV
 export BAT_THEME=tokyonight_night
 export BAT_THEME=gruvbox-dark
+export EZA_CONFIG_DIR=~/.config/eza/
 
 # thefuck alias
 if exist thefuck; then
@@ -17,7 +13,7 @@ fi
 
 
 ## FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh || source <(fzf --zsh)
 
 # -- Use fd instead of fzf --
 export FZF_DEFAULT_OPTS='--height 80% --tmux bottom,40% --layout reverse --border top'

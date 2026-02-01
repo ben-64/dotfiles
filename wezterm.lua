@@ -72,7 +72,7 @@ end)
 
 config.inactive_pane_hsb = {
   saturation = 0.6,
-  brightness = 0.1,
+  brightness = 0.4,
 }
 
 config.keys = {
@@ -136,6 +136,15 @@ config.keys = {
     key = "d",
     mods = "CTRL|SHIFT",
     action = wezterm.action.SendString("tmux detach-client\n")
+  },
+}
+
+config.mouse_bindings = {
+  -- Use ALT to move window
+  {
+    event = { Drag = { streak = 1, button = 'Left' } },
+    mods = 'ALT',
+    action = wezterm.action.StartWindowDrag,
   },
 }
 
