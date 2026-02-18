@@ -5,6 +5,8 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices.
+active_border = 'blue'
+inactive_border = 'grey'
 
 -- For example, changing the initial geometry for new windows:
 config.initial_cols = 120
@@ -22,6 +24,51 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 0
+
+config.window_frame = {
+  border_left_width = '0.1cell',
+  border_right_width = '0.1cell',
+  border_bottom_height = '0.1cell',
+  border_top_height = '0.1cell',
+
+  border_left_color = active_border,
+  border_right_color = active_border,
+  border_bottom_color = active_border,
+  border_top_color = active_border,
+}
+
+-- Color borders
+wezterm.on('window-focus-changed', function(window, pane)
+  if window:is_focused() then
+    -- Fenêtre active : bordure colorée
+    window:set_config_overrides({
+      window_frame = {
+        border_left_width = '0.2cell',
+        border_right_width = '0.2cell',
+        border_bottom_height = '0.1cell',
+        border_top_height = '0.1cell',
+        border_left_color = active_border,
+        border_right_color = active_border,
+        border_bottom_color = active_border,
+        border_top_color = active_border,
+      },
+    })
+  else
+    -- Fenêtre inactive : bordure plus discrète ou neutre
+    window:set_config_overrides({
+      window_frame = {
+        border_left_width = '0.2cell',
+        border_right_width = '0.2cell',
+        border_bottom_height = '0.1cell',
+        border_top_height = '0.1cell',
+        border_left_color = inactive_border,
+        border_right_color = inactive_border,
+        border_bottom_color = inactive_border,
+        border_top_color = inactive_border
+      },
+    })
+  end
+end)
 
 config.inactive_pane_hsb = {
   saturation = 0.6,
