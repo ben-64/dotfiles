@@ -137,3 +137,7 @@ if [ -f $TOOLS/forgit/forgit.plugin.zsh ]; then
     export FORGIT_LOG_FZF_OPTS="--reverse"
     source $TOOLS/forgit/forgit.plugin.zsh
 fi
+
+notify() {
+  osascript -e "display notification \"$1\" with title \"Notification\""
+}
