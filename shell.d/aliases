@@ -118,6 +118,7 @@ else
     alias lt='ll -Fhtr'
     alias lz='ll -1FShr'
     alias lr='tree'
+    export LS_COLORS="di=38;2;122;162;247:fi=38;2;192;202;245:ln=38;2;125;207;255:ex=38;2;158;206;106:ow=38;2;122;162;247:tw=38;2;122;162;247"
 fi
 
 # System utilities
