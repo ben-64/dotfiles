@@ -6,9 +6,6 @@ if exist nvim; then
 fi
 
 # Security
-alias chown="chown --preserve-root"
-alias chmod="chmod --preserve-root"
-alias chgrp="chgrp --preserve-root"
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
