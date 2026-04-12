@@ -16,17 +16,20 @@ truncation_symbol = '…/'
 
 # Git branch (violet)
 [git_branch]
-disabled = true
+disabled = false
 symbol = '🌱 '
 style = 'bold purple'
 
 # Git status (vert/rouge selon clean/dirty)
 [git_status]
-disabled = true
+disabled = false
 style = 'bold yellow'
 
 [gcloud]
 detect_env_vars = ['GCP']
+
+[hostname]
+ssh_only = true
 
 # Langages (couleurs variées)
 [rust]
