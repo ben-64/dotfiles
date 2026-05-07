@@ -28,6 +28,9 @@ style = 'bold yellow'
 [gcloud]
 detect_env_vars = ['GCP']
 
+[hostname]
+ssh_only = true
+
 # Langages (couleurs variées)
 [rust]
 symbol = '🦀 '
