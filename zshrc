@@ -82,7 +82,8 @@ export WORDCHARS="_-"
 load_conf_folder() {
 	if [ -d $1 ]; then
 		for sh in $1/*; do
-            # Do not loaod the first local script, it has already been load if it exists
+      [[ "$(basename $sh)"  == _* ]] && continue
+      # Do not loaod the first local script, it has already been load if it exists
 			if [ -f $sh ] && [ $sh != "~/.shell_$(hostname -s).d/init_host.sh" ]; then
 				source $sh
 			fi
