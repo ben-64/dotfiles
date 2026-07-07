@@ -18,7 +18,7 @@ fi
 # -- Use fd instead of fzf --
 export FZF_DEFAULT_OPTS='--height 80% --tmux bottom,40% --layout reverse --border top'
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="fd --type d --hidden --follow --exclude .git . ~/Documents/ ~/Desktop/ ~/Downloads/ ~/local/"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
 
@@ -64,6 +64,16 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=border:#262626,label:#aeaeae,query:#d9d9d9
   --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
   --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
+
+  # Wrapper autour de Ctrl-T pour supprimer l'espace ajouté à la fin
+_fzf_ctrl_t_nospace() {
+  zle fzf-file-widget
+  [[ $LBUFFER == *' ' ]] && LBUFFER=${LBUFFER% }
+}
+zle -N _fzf_ctrl_t_nospace
+bindkey '^T' _fzf_ctrl_t_nospace
+
+
 
 
 # Handle ** for pass
