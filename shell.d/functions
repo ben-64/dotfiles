@@ -294,3 +294,9 @@ function yy() {
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
+
+# Move last screenshot in current folder with $1 name
+function sc() {
+  last=$(/bin/ls -t ~/Desktop/ | head -n 1)
+  mv ~/Desktop/"$last" $1
+}
