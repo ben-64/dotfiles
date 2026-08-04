@@ -13,6 +13,7 @@ fi
 
 
 ## FZF
+unset FZF_DEFAULT_OPTS
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh || source <(fzf --zsh)
 
 # -- Use fd instead of fzf --
