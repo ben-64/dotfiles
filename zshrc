@@ -94,4 +94,6 @@ load_conf_folder() {
 load_conf_folder ~/.shell.d
 load_conf_folder ~/.shell_$(hostname -s).d
 
+bindkey -e
+
 umask 0022

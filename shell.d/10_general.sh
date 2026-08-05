@@ -109,8 +109,6 @@ fzf-cheatsheets-widget() {
 }
 zle     -N             fzf-cheatsheets-widget
 bindkey -M emacs '\eg' fzf-cheatsheets-widget
-bindkey -M vicmd '\eg' fzf-cheatsheets-widget
-bindkey -M viins '\eg' fzf-cheatsheets-widget
 
 ## FZF Git
 if [ -f $TOOLS/fzf-git.sh/fzf-git.sh ]; then
