@@ -1,0 +1,65 @@
+# =====================================================================
+# Config Ghostty — traduite depuis wezterm.lua
+# À copier dans :  ~/.config/ghostty/config
+# Recharge à chaud : Cmd + Shift + ,
+# =====================================================================
+
+# --- Fenêtre : géométrie initiale (en cellules, colonnes x lignes) ---
+window-width = 120
+window-height = 28
+
+# --- Police ---
+#font-family = MesloLGS Nerd Font Propo
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 14
+font-family-bold = JetBrainsMono Nerd Font Mono
+# wezterm utilisait weight="Bold" comme graisse par défaut.
+# Décommente si tu veux vraiment tout le texte en gras :
+# font-style = Bold
+
+# --- Thème ---
+# 'Guezwhoz' fait partie des schémas iTerm2 intégrés à Ghostty.
+# Vérifie le nom exact avec :  ghostty +list-themes | grep -i guez
+theme = "Arthur"
+
+# --- Apparence fenêtre ---
+background-opacity = 1
+background-blur-radius = 0
+# Équivalent le plus proche de window_decorations = "RESIZE" sur macOS
+# (masque la barre de titre, fenêtre toujours redimensionnable) :
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+window-title-font-family = ""
+
+# --- Splits : dimmer les panneaux inactifs ---
+# Remplace inactive_pane_hsb (saturation/brightness) par une opacité.
+unfocused-split-opacity = 0.4
+
+# --- Comportement macOS ---
+macos-option-as-alt = left
+
+# =====================================================================
+# Raccourcis (keybind = touche=action)
+# =====================================================================
+
+# Splits
+keybind = cmd+shift+v=new_split:right
+keybind = cmd+shift+h=new_split:down
+
+# Naviguer entre les splits
+keybind = cmd+left=goto_split:left
+keybind = cmd+right=goto_split:right
+keybind = cmd+up=goto_split:up
+keybind = cmd+down=goto_split:down
+
+# Naviguer entre les onglets
+keybind = cmd+alt+left=previous_tab
+keybind = cmd+alt+right=next_tab
+
+# Saut de mot avec Alt+flèches (ESC+b / ESC+f)
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
+
+# --- Détach tmux (obsolète avec Zellij, laissé en mémoire) ---
+# Avec Zellij, le détach par défaut est : Ctrl+o puis d
+# keybind = ctrl+shift+d=text:tmux detach-client\n
