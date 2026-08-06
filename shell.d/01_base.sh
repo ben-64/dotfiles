@@ -3,6 +3,7 @@
 TOOLS="${TOOLS:-$HOME/Documents/tools}"
 CHEATSHEETS="${CHEATSHEETS:-$HOME/Documents/cheatsheets}"
 PYENV="${PYENV:-$HOME/local/env}"
+export CARGO_TARGET_DIR="$HOME/.cargo-target"
 
 ### FUNCTIONS
 if_exist() {
