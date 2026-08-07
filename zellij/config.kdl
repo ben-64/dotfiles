@@ -1,0 +1,91 @@
+// =====================================================================
+// Config Zellij — architecture LEADER + sous-modes, pilotée par kitty
+// À copier dans :  ~/.config/zellij/config.kdl
+//
+// Chaîne : kitty envoie <leader=Ctrl+b> + touche(s).
+//   - Ctrl+b            -> entre en mode "Tmux" (= notre mode leader)
+//   - puis flèche       -> focus pane (one-shot, retour Normal)
+//   - puis t/p/r/m      -> entre dans un sous-mode dédié
+//
+// sticky   = pas de SwitchToMode "Normal"  -> on reste dans le mode
+// one-shot = ... + SwitchToMode "Normal"   -> retour immédiat au normal
+// =====================================================================
+
+keybinds {
+
+    // Le LEADER : Ctrl+b ouvre le mode leader (Tmux réutilisé)
+    shared_except "locked" {
+        bind "Ctrl b" { SwitchToMode "Tmux"; }
+    }
+
+    // ================= MODE LEADER (Ctrl+b) =================
+    tmux clear-defaults=true {
+        // Focus pane : ONE-SHOT (Cmd+flèche)
+        bind "Left"  { MoveFocus "Left";  SwitchToMode "Normal"; }
+        bind "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
+        bind "Up"    { MoveFocus "Up";    SwitchToMode "Normal"; }
+        bind "Down"  { MoveFocus "Down";  SwitchToMode "Normal"; }
+
+        // Entrée dans les sous-modes (Cmd+t / p / r / m)
+        bind "t" { SwitchToMode "Tab"; }
+        bind "p" { SwitchToMode "Pane"; }
+        bind "r" { SwitchToMode "Resize"; }
+        bind "m" { SwitchToMode "Move"; }
+        bind "s" { SwitchToMode "Session"; }
+
+        // Sortie de secours
+        bind "Esc" { SwitchToMode "Normal"; }
+    }
+
+    // ================= SOUS-MODE TAB =================
+    // nav = sticky ; création/fermeture = one-shot
+    tab clear-defaults=true {
+        bind "Left"  { GoToPreviousTab; }               // sticky
+        bind "Right" { GoToNextTab; }                   // sticky
+        bind "n" { NewTab;   SwitchToMode "Normal"; }   // one-shot
+        bind "[" { GoToPreviousTab; SwitchToMode "Normal"; }
+        bind "]" { GoToNextTab;     SwitchToMode "Normal"; }
+        bind "x" { CloseTab; SwitchToMode "Normal"; }   // one-shot
+        bind "r" { SwitchToMode "RenameTab"; }
+        bind "1" { GoToTab 1; SwitchToMode "Normal"; }
+        bind "2" { GoToTab 2; SwitchToMode "Normal"; }
+        bind "3" { GoToTab 3; SwitchToMode "Normal"; }
+        bind "Esc"   { SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Normal"; }
+    }
+
+    // ================= SOUS-MODE PANE =================
+    // focus = sticky ; splits/close/zoom = one-shot
+    pane clear-defaults=true {
+        bind "Left"  { MoveFocus "Left"; }              // sticky
+        bind "Right" { MoveFocus "Right"; }
+        bind "Up"    { MoveFocus "Up"; }
+        bind "Down"  { MoveFocus "Down"; }
+        bind "v" { NewPane "Right"; SwitchToMode "Normal"; }  // vsplit
+        bind "h" { NewPane "Down";  SwitchToMode "Normal"; }  // hsplit
+        bind "x" { CloseFocus;              SwitchToMode "Normal"; }
+        bind "z" { ToggleFocusFullscreen;   SwitchToMode "Normal"; }
+        bind "Esc" { SwitchToMode "Normal"; }
+    }
+
+    // ================= SOUS-MODE RESIZE (sticky) =================
+    resize clear-defaults=true {
+        bind "Left"  { Resize "Increase Left"; }
+        bind "Right" { Resize "Increase Right"; }
+        bind "Up"    { Resize "Increase Up"; }
+        bind "Down"  { Resize "Increase Down"; }
+        bind "Esc" { SwitchToMode "Normal"; }
+    }
+
+    // ================= SOUS-MODE MOVE (sticky) =================
+    move clear-defaults=true {
+        bind "Left"  { MovePane "Left"; }
+        bind "Right" { MovePane "Right"; }
+        bind "Up"    { MovePane "Up"; }
+        bind "Down"  { MovePane "Down"; }
+        bind "Esc" { SwitchToMode "Normal"; }
+    }
+}
+
+pane_frames false
+theme "catppuccin-mocha"
