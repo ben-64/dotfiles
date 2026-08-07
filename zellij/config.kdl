@@ -16,6 +16,7 @@ keybinds {
     // Le LEADER : Ctrl+b ouvre le mode leader (Tmux réutilisé)
     shared_except "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
+        unbind "Alt f"
     }
 
     // ================= MODE LEADER (Ctrl+b) =================
