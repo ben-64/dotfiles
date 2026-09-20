@@ -41,8 +41,8 @@ keybinds {
     // ================= SOUS-MODE TAB =================
     // nav = sticky ; création/fermeture = one-shot
     tab clear-defaults=true {
-        bind "Left"  { GoToPreviousTab; }               // sticky
-        bind "Right" { GoToNextTab; }                   // sticky
+        bind "Left"  { GoToPreviousTab; SwitchToMode "Normal";}               // sticky
+        bind "Right" { GoToNextTab; SwitchToMode "Normal";}                   // sticky
         bind "n" { NewTab;   SwitchToMode "Normal"; }   // one-shot
         bind "[" { GoToPreviousTab; SwitchToMode "Normal"; }
         bind "]" { GoToNextTab;     SwitchToMode "Normal"; }
@@ -58,10 +58,10 @@ keybinds {
     // ================= SOUS-MODE PANE =================
     // focus = sticky ; splits/close/zoom = one-shot
     pane clear-defaults=true {
-        bind "Left"  { MoveFocus "Left"; }              // sticky
-        bind "Right" { MoveFocus "Right"; }
-        bind "Up"    { MoveFocus "Up"; }
-        bind "Down"  { MoveFocus "Down"; }
+        bind "Left"  { MoveFocus "Left"; SwitchToMode "Normal";}              // sticky
+        bind "Right" { MoveFocus "Right"; SwitchToMode "Normal";}
+        bind "Up"    { MoveFocus "Up"; SwitchToMode "Normal";}
+        bind "Down"  { MoveFocus "Down"; SwitchToMode "Normal";}
         bind "v" { NewPane "Right"; SwitchToMode "Normal"; }  // vsplit
         bind "h" { NewPane "Down";  SwitchToMode "Normal"; }  // hsplit
         bind "x" { CloseFocus;              SwitchToMode "Normal"; }
