@@ -19,7 +19,7 @@ alias mv='mv -i'
 
 
 # Win time
-if [ $SYSTEM_TYPE = "Linux"]; then
+if [ $SYSTEM_TYPE = "Linux" ]; then
   alias ipt="sudo /sbin/iptables"
   alias ipr="ip route show"
   alias ipa="ip --brief addr show"
