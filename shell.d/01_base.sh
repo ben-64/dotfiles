@@ -5,6 +5,14 @@ CHEATSHEETS="${CHEATSHEETS:-$HOME/Documents/cheatsheets}"
 PYENV="${PYENV:-$HOME/local/env}"
 export CARGO_TARGET_DIR="$HOME/.cargo-target"
 
+kernel=$(uname)
+if [ $kernel = "Darwin" ]; then
+	export SYSTEM_TYPE="macos"
+else
+	export SYSTEM_TYPE="linux"
+fi
+
+
 ### FUNCTIONS
 if_exist() {
     which $1 > /dev/null 2>/dev/null
