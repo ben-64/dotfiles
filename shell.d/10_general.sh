@@ -36,7 +36,6 @@ alias mkdir='mkdir -p'
 alias svi="sudo vi"
 alias dns="dig +short"
 alias i="ipython3"
-alias e="emacs"
 alias ux="chmod u+x"
 alias rel="source ~/.zshrc"
 alias m="man"
@@ -51,8 +50,7 @@ if_exist bat "alias c='bat --plain'" "alias c=cat"
 if_exist hexyl "alias x=hexyl" "alias x=xxd"
 alias gcm="git commit -m"
 alias y="yazi"
-alias nv="nvim"
-alias v=nvim
+alias v=vi
 alias gp="git pull"
 alias gP="git push"
 
@@ -128,8 +126,6 @@ alias pscpu="ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 5"
 alias pscpu5="pscpu | tail -5"
 alias pscpu10="pscpu | tail -10"
 
-### shows the corresponding process to ...
-alias psx="ps auxwf | grep "
 
 ###################################
 #      FUNCTIONS
@@ -145,14 +141,6 @@ encrypt() {
 
 highlight() {
 	grep --color -E "$1|$"
-}
-
-gps() {
-	ps auxf | grep $*
-}
-
-gdpkg() {
-	dpkg -l | grep $*
 }
 
 alert() {
@@ -171,7 +159,8 @@ cpath() {
 	fi
 	# Give absolut path of $1 and send it to copy buffer, usefull to copy/paste
 	p=$(realpath $t)
-	echo -n $p | xsel
+  [ $SYSTEM_TYPE = "macos" ] && COPY_CMD=pbcopy || COPY_CMD=xsel
+	echo -n $p | $COPY_CMD
 	echo $p
 }
 

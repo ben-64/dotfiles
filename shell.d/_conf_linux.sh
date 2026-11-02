@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Aliases
+alias psx="ps auxwf | grep "
 alias ipt="sudo /sbin/iptables"
 alias ipr="ip route show"
 alias ipa="ip --brief addr show"
@@ -24,6 +25,10 @@ otcp() {
 oudp() {
     echo "Omitting 127.0.0.1"
     sudo netstat -lupn | tail -n +3 | grep -v 127.0.0.1
+}
+
+gdpkg() {
+	dpkg -l | grep $*
 }
 
 # Clean old kernels
