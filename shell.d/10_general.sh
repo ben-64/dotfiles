@@ -133,12 +133,6 @@ alias pscpu10="pscpu | tail -10"
 # File backup function
 bck() { cp "$1" "$1.back_`date +%Y%m%d_%H%M%S`" ; }
 
-encrypt() {
-	passwd=$(pwqgen)
-	7z a -p$passwd $1.zip $1
-	echo "password = $passwd"
-}
-
 highlight() {
 	grep --color -E "$1|$"
 }

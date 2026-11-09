@@ -1,5 +1,11 @@
 #!/bin/bash
 
+encrypt() {
+	passwd=$(pwqgen)
+	7zz a -p$passwd $1.zip $1
+	echo "password = $passwd"
+}
+
 notify() {
   osascript -e "display notification \"$1\" with title \"Notification\""
 }

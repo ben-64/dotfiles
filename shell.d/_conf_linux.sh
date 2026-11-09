@@ -16,6 +16,12 @@ alias mountc="mount|column -t"
 alias ip='ip --color'
 alias ipb='ip --color --brief'
 
+encrypt() {
+	passwd=$(pwqgen)
+	7z a -p$passwd $1.zip $1
+	echo "password = $passwd"
+}
+
 # Functions
 otcp() {
     echo "Omitting 127.0.0.1"
