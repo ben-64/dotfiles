@@ -9,3 +9,4 @@ tags
 *.toc
 *.vrb
 vim/spell
+.claude_user
